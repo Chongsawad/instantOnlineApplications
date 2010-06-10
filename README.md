@@ -1,6 +1,5 @@
-
-Welcome to Instant Online Applications
-===========
+Welcome to Instant Online Applications 
+=========== 
 
     Instant Onlie Applications is a web-base-opensource application written 
     in Ruby on Rails, that can automatically deploy other rails applications 
@@ -11,12 +10,12 @@ Welcome to Instant Online Applications
 
 
 
-SCREEN SHORT
+SCREEN SHRT
 -----------
+![Screenshot](http://dl.dropbox.com/u/7637397/IOAscreenshot)
 
 
 
-
-
-
-
+VISIT
+------
+    .....
