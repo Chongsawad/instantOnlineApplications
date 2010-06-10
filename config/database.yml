@@ -1,0 +1,20 @@
+base: &base
+  adapter: mysql
+  encoding: utf8
+  reconnect: false
+  pool: 5
+  host: localhost
+  username: root
+  password:
+  
+development:
+  <<: *base
+  database: instantOnlineApplicaitons_development
+
+test:
+  <<: *base
+  database: instantOnlineApplicaitons_test
+
+production:
+  <<: *base
+  database: instantOnlineApplicaitons_production

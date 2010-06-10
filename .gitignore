@@ -1,0 +1,13 @@
+.DS_Store
+.bundle
+/vendor/bundler_gems
+/tmp/**/*
+/log/*
+*.log
+/tmp/restart.txt
+/config/deploy.rb
+/db/*.sql
+/public/avatars/*
+/public/files/*
+/public/headers/*
+/public/themes/*
