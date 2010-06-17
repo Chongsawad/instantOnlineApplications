@@ -9,12 +9,12 @@ base: &base
   
 development:
   <<: *base
-  database: instantOnlineApplicaitons_development
+  database: ioa_development
 
 test:
   <<: *base
-  database: instantOnlineApplicaitons_test
+  database: ioa_test
 
 production:
   <<: *base
-  database: instantOnlineApplicaitons_production
+  database: ioa_production
