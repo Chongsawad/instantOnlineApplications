@@ -1,0 +1,135 @@
+body {
+  background:url(../images/bg_blue.png) repeat-x top center;
+}
+body#application {
+  background:url(../images/bg.png) repeat-x top center;
+}
+h1 {
+  margin: 0px;
+}
+h2 {
+  margin: 0px;
+  color:#000;
+}
+h3 {
+  font-weight:normal;
+  font-size:16px;
+  margin-top:20px;
+  color:#000;
+}
+p, a {
+  color:#000;
+  font-size: 14px;
+  margin: 0px;
+}
+.beta {
+  margin-left:4px;
+}
+.omega {
+  margin-left:9px;
+}
+#application-header {
+  background:url("../images/banner_home.png") no-repeat scroll center center transparent;
+  height:366px;
+  margin-bottom:107px;
+}
+#application-list{
+  background:url("../images/banner.png") no-repeat scroll center center transparent;
+  height:150px;
+  margin-bottom:16px;
+}
+.footer {
+  height: 375px;
+  background: #000;
+  background:url("../images/bg-footer-tile.gif") repeat-x scroll 0 0 #D0D9E0;
+  color:#576672;
+  margin-top: 20px;
+  padding-top: 20px;
+}
+.frame {
+  border: 1px solid #b6b6b6;
+  text-align:center;
+  padding: 4px;
+  height:300px;
+  width: 276px;
+}
+.header {
+  overflow: hidden;
+  height:66px;
+}
+#login {
+  float: right;
+  text-align:right;
+  width: 100%;
+  margin-top: 1px;
+}
+#logo {
+  float:left;
+  text-align:center;
+  padding-top: 15px;
+}
+#nav {
+  float: right;
+  text-align: right;
+  margin-top: 20px;
+}
+#nav li {
+  width: 57px;
+  float: left;
+  text-align: center;
+  list-style-type: none;
+}
+#nav li a {
+  color:#3F3F3F;
+  display: block;
+  padding:0 0 0 11px;
+  line-height:30px;
+  text-decoration:none;
+  text-shadow:0 1px #FFFFFF;
+}
+#nav li a span {
+  display:inline-block;
+  padding:0 10px 0 0;
+  height: 30px;
+}
+#nav li a:hover, #nav li.current_page_item a {
+  background:url("../images/top-nav-left.png") no-repeat scroll left center transparent;
+  color:#FFFFFF;
+  cursor:pointer;
+  text-decoration:none;
+}
+#nav li a:hover span, #nav li.current_page_item a span{
+  background:url("../images/top-nav.png") no-repeat scroll right center transparent;
+}
+.product {
+  height: auto;
+  margin-top: 40px;
+  overflow:hidden;
+}
+.product .detail {
+  float:left;
+  width: 188px;
+}
+.product .button {
+  margin-top:26px;
+  text-align:right;
+  float:none;
+}
+.product .button a {
+  margin: 1px;
+}
+.product .frame {
+  width:272px;
+  margin:0 auto;
+  padding: 12px;
+}
+.product p {
+  color:#60686b;
+  font-size: 12px;
+  margin-top: -17px;
+}
+.wrapper {
+  height:auto !important;
+  margin:0 auto;
+  min-height: 100%;
+}

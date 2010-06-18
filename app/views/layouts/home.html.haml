@@ -1,0 +1,31 @@
+%html
+  %head
+    %title Instant Online Applications
+    = stylesheet_link_tag 'reset'
+    = stylesheet_link_tag 'text'
+    = stylesheet_link_tag '960'
+    = stylesheet_link_tag 'style'
+
+  %body
+    .wrapper
+      .header
+        .container_12
+          .grid_5#logo
+            %h1
+              %img{:src => "../images/logo.png"}
+          .grid_7
+            = render :partial => "pages/nav"
+          .clearfix
+
+      .content
+        .container_12
+          .grid_12#application-header
+          #flash-notice
+            = flash[:notice]
+          = yield
+    .clearfix
+
+    .footer
+      = render :partial => "pages/footer"
+
+
