@@ -9,13 +9,47 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100618052209) do
+ActiveRecord::Schema.define(:version => 20100623052035) do
+
+  create_table "delayed_jobs", :force => true do |t|
+    t.integer  "priority",   :default => 0
+    t.integer  "attempts",   :default => 0
+    t.text     "handler"
+    t.text     "last_error"
+    t.datetime "run_at"
+    t.datetime "locked_at"
+    t.datetime "failed_at"
+    t.string   "locked_by"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "delayed_jobs", ["priority", "run_at"], :name => "delayed_jobs_priority"
 
   create_table "projects", :force => true do |t|
     t.string   "name"
     t.text     "content"
     t.string   "img_path"
     t.string   "path"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "detail"
+    t.string   "url_project"
+    t.string   "url_demo"
+    t.string   "screenshot_file_name"
+    t.string   "screenshot_content_type"
+    t.integer  "screenshot_file_size"
+    t.datetime "screenshot_updated_at"
+  end
+
+  create_table "sites", :force => true do |t|
+    t.string   "name",        :null => false
+    t.integer  "project_id",  :null => false
+    t.integer  "user_id",     :null => false
+    t.string   "path",        :null => false
+    t.string   "payment"
+    t.string   "status"
+    t.string   "description"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -47,6 +81,5 @@ ActiveRecord::Schema.define(:version => 20100618052209) do
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
   add_index "users", ["unlock_token"], :name => "index_users_on_unlock_token", :unique => true
-  add_index "users", ["username"], :name => "index_users_on_username", :unique => true
 
 end

@@ -1,5 +1,6 @@
 class HomeController < ApplicationController
   def index
+    #@login = Session.new
     
     respond_to do |format|
       format.html # index.html.haml

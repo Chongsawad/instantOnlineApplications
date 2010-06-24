@@ -1,0 +1,22 @@
+#app-wrapper
+  #app-title.grid_12
+    %h3
+      =h @project.name
+    %p
+      =h @project.content
+  .clearfix
+
+  #tabs.grid_8
+    = render :partial => "tabs"
+
+  #site-form.grid_4
+    %ul
+      %li
+        %a{:href=>"#form"}
+          Form
+    #form
+      = render :partial => "form"
+
+  #manage-account.grid_4
+    = render :partail => 'sites/user-detail'
+  .clearfix

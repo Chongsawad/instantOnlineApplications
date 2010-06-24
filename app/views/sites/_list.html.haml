@@ -1,0 +1,13 @@
+%ul
+  %li
+    %a{:href=>"#manage-site-list"}
+      Sites
+
+#manage-site-list
+  %h4
+    Site List
+  %p
+    Sites available :
+    =h @sites.count
+
+  = render :partial => 'detail', :object => "site"

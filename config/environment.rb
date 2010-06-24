@@ -16,8 +16,11 @@ Rails::Initializer.run do |config|
 
   # Specify gems that this application depends on and have them installed with rake gems:install
   config.gem "haml"
+  config.gem "warden"
   config.gem "devise"
   config.gem "delayed_job"
+  config.gem "formtastic"
+  # config.gem "paperclip"
   # config.gem "hpricot", :version => '0.6', :source => "http://code.whytheluckystiff.net"
   # config.gem "sqlite3-ruby", :lib => "sqlite3"
   # config.gem "aws-s3", :lib => "aws/s3"
@@ -40,4 +43,21 @@ Rails::Initializer.run do |config|
   # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
   # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}')]
   # config.i18n.default_locale = :de
+
+    # Setup for production - deliveries, no errors raised
+  config.action_mailer.default_url_options = { :host => 'localhost:3000' }
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.raise_delivery_errors = true 
+  config.action_mailer.default_charset = "utf-8"
+
+  config.action_mailer.smtp_settings = {
+    :address => "smtp@gmail.com",
+    :port => 587,
+    :domain => "chongsawad252@gmail.com",
+    :authentication => :plain,
+    :user_name => "chongsawad252@gmail.com",
+    :password => "kckctv9t2925"
+  }
+
 end

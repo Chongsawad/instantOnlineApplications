@@ -1,0 +1,34 @@
+#link-form
+  %ul
+    %li
+      %a{:href=>"#link"}
+        Access
+    %li
+      %a{:href=>"#manage"}
+        Manage
+  #link
+    %h3
+      Access your site
+    %hr
+    %p
+      = link_to "http://" + @site.name.downcase + ".project.com"
+  #manage
+    %p
+      Manage your site(s) through:
+    %ul
+      %li
+        %h3
+          = link_to 'Site Configurations', edit_site_path(@site)
+        %p
+          Edit/Change any settings for
+          %span
+            = @site.name.downcase + ".project.com"
+      %hr
+      %li
+        = link_to 'Site Managements', sites_path
+        %p
+          Manage/Organize all of your sites
+      %hr
+      %li
+        = link_to 'Remove this site(optional required)'
+      %hr

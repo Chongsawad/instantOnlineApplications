@@ -1,0 +1,11 @@
+#user
+  - if user_signed_in?
+    Hi
+    %a{ :href=> edit_user_registration_url }
+      = current_user.username
+      = image_tag "1277304456_status_online.png", :size => "12x12"
+
+  - else
+    =link_to "Log in", new_user_session_path
+    |
+    =link_to "Sign up", new_user_registration_path

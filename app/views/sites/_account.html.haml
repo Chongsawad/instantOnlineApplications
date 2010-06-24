@@ -1,0 +1,12 @@
+%ul
+  %li
+    %a{:href=>"#account-detail"}
+      Account
+
+#account-detail
+  %p
+    Name :
+    =h current_user.username
+  %p
+    Email :
+    =h current_user.email

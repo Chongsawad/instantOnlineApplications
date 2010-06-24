@@ -1,0 +1,21 @@
+.container_12
+  .grid_12
+    %h3
+      SITE MANAGEMENT
+    %h4
+      USER : 
+      =h current_user.username
+
+    .sites
+      - @sites.each do |site|
+        .site
+          %p
+            =h site.name
+          %p
+            =h site.description
+          %p
+            = link_to 'Show', site
+            = link_to 'Edit', edit_site_path(site)
+            = link_to 'Destroy', site, :confirm => 'Are you sure?', :method => :delete
+
+      = link_to 'New site', projects_path

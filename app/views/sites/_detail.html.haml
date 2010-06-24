@@ -1,0 +1,39 @@
+%table#manage-site-list-table
+  %thead
+    %tr
+      %th{:nowrap => :true}
+        Site ID
+      %th
+        Sitename
+      %th
+        Description
+      %th
+        Project
+      %th
+        Status
+      %th
+        Last Updated
+
+  %tbody
+    - @sites.each do |site|
+      %tr
+        %td{:nowrap => :true}
+          =h site.id
+        %td{:nowrap => :true}
+          %a{:href => "http://" + site.name.to_s().capitalize + ".project.com"}
+            = site.name.to_s().capitalize + ".project.com"
+
+        %td{:nowrap => :true}
+          =h site.description.capitalize
+
+        %td{:nowrap => :true}
+          =h site.project.name
+
+        %td{:nowrap => :true}
+          -if site.status == nil
+            Undefined
+          -else
+            =h site.status.to_s().capitalize
+
+        %td{:nowrap => :true}
+          =h site.updated_at.ctime

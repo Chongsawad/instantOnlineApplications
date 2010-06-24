@@ -1,25 +1,13 @@
 %h2
   Sign up
-%fieldset
-  - form_for resource_name, resource, :url => registration_path(resource_name) do |f|
-    = f.error_messages
-    %br
-    = f.label :email
-    %br
-    = f.text_field :email
-    %br
-    = f.label :username
-    %br
-    = f.text_field :username
-    %br
-    = f.label :password
-    %br
-    = f.password_field :password
-    %br
-    = f.label :password_confirmation
-    %br
-    = f.password_field :password_confirmation
-    %br
-    = f.submit "Sign up"
+- semantic_form_for resource_name, resource, :url => registration_path(resource_name) do |form|
+  - form.inputs do
+    = form.input :username
+    = form.input :email
+    = form.input :password, :as => :password
+    = form.input :password_confirmation, :as => :password
+ 
+  = form.buttons
+
   %br
   = render :partial => "shared/devise_links"

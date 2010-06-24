@@ -1,0 +1,90 @@
+/*body {  background:url(../images/bg_blue.png) repeat-x top center;}
+body#application {  background:url(../images/bg.png) repeat-x top center;}
+*/
+/*body{ background: url("../images/bg.gif") repeat-x scroll center top #F1F1F1; }*/
+body{  font-family: 'Lucida Grande', 'Lucida Sans Unicode',sans-serif;
+       font-size:13px;  color:#434343;  margin:0;  -webkit-text-size-adjust: none; }
+.header { height: 90px; }
+h1, h2, h3, h4, h5, h6 {
+  font-family:'Lucida Grande', 'Lucida Sans Unicode';
+  font-weight:normal;color:#000;}
+h1  {  text-shadow:3px -1px 2px #EEEEEE;
+  font-size:28px;  letter-spacing:2px;  margin: 0 0 2px; float:left;  line-height:normal; }
+h2 {font-size:24px; margin: 0 0 25px;  }
+h2.small { font-size:22px; margin-bottom: 15px; }
+h3 {font-size:16px; margin:0 0 10px; font-weight:bold;}
+h4 {font-size:14px; margin:0 0 10px; font-weight:bold;}
+
+p {line-height:18px; margin:0 0 15px 0; color:#000; }
+p.navigator { color: #0373bc; font-size: 14px; }
+a {color: #000; text-decoration:none; font-weight:normal; }
+a:hover { color:#3084ca; }
+p, table, table tr, table tr td{
+  font-family:"Lucida Sans Unicode","Lucida Grande",Sans-Serif;
+  border-collapse:collapse; font-size:12px;  text-align:left;
+}
+
+/*****************************************************************/
+
+#app-title {  margin-bottom: 30px;  margin-top: 25px; }
+#about-project tr td { width: 100px;}
+#application-header {  background:url("../images/banner_home.png") no-repeat scroll center center transparent;
+                       height:366px;  margin-bottom:107px;}
+#application-list{  /*background:url("../images/banner.png") no-repeat scroll center center transparent;*/
+  height:150px;}
+.content { height: auto !important; }
+.footer {  background:url("../images/bg-footer-tile.gif") repeat-x scroll 0 0 #D0D9E0;
+           height: 180px;  color:#576672;  margin-top: 20px;  padding-top: 20px;}
+.frame {  border: 0px solid #b6b6b6;  text-align:center;
+          padding: 4px;  height:300px;  }/*width: 276px;*/
+#logo {  float:left;  margin-top:10px; }
+#manage-account { float: left; position: absolute;}
+#manage-list { float: right;}
+#manage-site-list { overflow: scroll;}
+#nav {  margin-top: 20px;  float: right;  text-align: right;}
+#nav li {  float: left; list-style-type: none;  margin: 0;}
+#nav li a { display: block;  padding:0 0 0 11px; }
+#nav li a span { padding-left:10px; font-size: 14px; text-shadow:1px 1px 0 #FFFFFF;}
+.nav li a:hover, .nav li.current_page_item a {
+  background:url("../images/top-nav-left.png") no-repeat scroll left center transparent;
+  color:#FFFFFF;  cursor:pointer;  text-decoration:none;}
+.nav li a:hover span, .nav li.current_page_item a span{
+  background:url("../images/top-nav.png") no-repeat scroll right center transparent;}
+.product { height: 500px; overflow:hidden; margin-bottom: 20px;}
+.product .detail {  float:left; height: 100px; width: 100%;}
+.product .detail h3{  margin-top: 23px; }
+#product .button {  margin-top:26px;  text-align:right;  float:none;}
+.product .button .preview { float: left; }
+.product .button .proceed { float: right; }
+.product .frame {  width:272px;  margin:0 auto;  padding: 12px;}
+.product p { color:#60686b;  font-size: 12px;}
+#site-form { float: right; position: absolute;}
+#tabs{ float: left; }
+#tabs-1, #tabs-2, #tabs-3{ min-height: 300px; }
+#manage-site-list-table tr th{
+  background:url("gradhead.png") repeat-x scroll 0 0 #B9C9FE;
+  border-bottom:1px solid #FFFFFF;
+  border-top:2px solid #D3DDFF;
+  color:#003399;
+  font-size:13px;
+  font-weight:normal;
+  text-align: center;
+  padding:8px;
+}
+#manage-site-list-table tr td,#manage-site-list-table tr td a{
+  background:url("gradback.png") repeat-x scroll 0 0 #E8EDFF;
+  border-bottom:1px solid #FFFFFF;
+  border-top:1px solid #FFFFFF;
+  color:#666699;
+  padding:8px;
+}
+#manage-site-list-table tr:hover td,#manage-site-list-table tr:hover td a{
+background:url("gradhover.png") repeat-x scroll 0 0 #D0DAFD;
+color:#333399;
+}
+
+#user{ float: right; text-align: right;}
+
+.beta { margin-left:4px;}
+.omega { margin-left:9px;}
+.wrapper {  margin:0 auto;  min-height: 100%; }

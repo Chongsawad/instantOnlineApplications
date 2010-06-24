@@ -1,10 +1,13 @@
 .frame
-  =image_tag(project.img_path)
-.detail
-  %h3
-    =h project.name
-  %p
-    =h project.content
-.button
-  =link_to image_tag("button_preview.png"), projects_path
-  =link_to image_tag("button_install.png"), projects_path
+  .screenshot
+    =image_tag project.screenshot.url, :size => "216x237"
+
+  .detail
+    %h3
+      =h project.name
+    %p
+      =h project.content
+
+  .button
+    =link_to image_tag("button_preview.png")
+    =link_to image_tag("button_install.png"), new_project_site_path(project)

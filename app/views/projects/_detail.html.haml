@@ -1,0 +1,16 @@
+%table
+  %tr
+    %td
+      Project name
+    %td
+      = @project.name
+  %tr
+    %td
+      Project info
+    %td
+      = @project.content
+  %tr
+    %td
+      Project screenshot
+    %td
+      = image_tag(@project.screenshot.url)
