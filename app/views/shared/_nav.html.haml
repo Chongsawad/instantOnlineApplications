@@ -1,0 +1,16 @@
+%ul
+  %li.current_page_item
+    =link_to "<span>Home</span>", root_path
+  %li
+    =link_to "<span>Store</span>", projects_path
+  %li
+    =link_to "<span>Pricing</span>", projects_path
+  %li
+    =link_to "<span>Support</span>", support_path
+  %li
+    =link_to "<span>Contact</span>", contact_path
+  %li
+    - if user_signed_in?
+      = link_to "<span>Logout</span>", destroy_user_session_path
+    - else
+      = link_to "<span>Login</span>", new_user_session_path

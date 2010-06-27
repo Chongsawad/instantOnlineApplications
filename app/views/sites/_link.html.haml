@@ -7,9 +7,12 @@
       %a{:href=>"#manage"}
         Manage
   #link
+    -if @site.status == "Re-deploying!"
+      = image_tag("waiting.png")
+    -else
+      = image_tag("deploy_ok.png")
     %h3
       Access your site
-    %hr
     %p
       = link_to "http://" + @site.name.downcase + ".project.com"
   #manage
@@ -25,10 +28,15 @@
             = @site.name.downcase + ".project.com"
       %hr
       %li
-        = link_to 'Site Managements', sites_path
+        = link_to 'Site Managements', manage_path
         %p
-          Manage/Organize all of your sites
+          Manage/Organize all of your sites.
       %hr
       %li
-        = link_to 'Remove this site(optional required)'
+        = link_to 'Re-Install', :controller => "sites", :action => "re_deploy"
+        %p
+          Rebuild the application. It may affect to databases and files.
+      %hr
+      %li
+        = link_to 'Remove this site(optional required)', site_path(@site.id), :method => :delete, :confirm => "Are you sure to delete this site? All of data not only in public folder but also its database too."
       %hr

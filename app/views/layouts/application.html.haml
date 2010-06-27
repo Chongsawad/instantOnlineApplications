@@ -1,14 +1,19 @@
 %html
   %head
     %title Instant Online Applications
+    -# = stylesheet_link_tag :all
     = stylesheet_link_tag 'reset'
     = stylesheet_link_tag 'text'
     = stylesheet_link_tag '960'
-    = stylesheet_link_tag 'application'
+    
+    = stylesheet_link_tag 'galleriffic-1'
     = stylesheet_link_tag 'jquery-ui-1.8.2.custom'
+    = stylesheet_link_tag 'application'
+    
     = formtastic_stylesheet_link_tag
     = javascript_include_tag "jquery-1.4.2.min"
     = javascript_include_tag "jquery-ui-1.8.2.custom.min"
+    = javascript_include_tag "jquery.galleriffic"
     = javascript_include_tag "application"
 
   %body#application
@@ -16,27 +21,34 @@
       .header
         .container_12
           .grid_12
-            = render :partial => "pages/login"
+            = render :partial => "shared/login"
+
           .grid_6#logo
             =link_to "<h1>Instant Online Application</h1>", projects_path
+
           .grid_6#nav
-            = render :partial => "pages/nav"
+            = render :partial => "shared/nav"
+          .grid_12
+            %hr
+          .clearfix
 
       .content
         .container_12
-          #flash-notice
-            %p.notice
-              = flash[:notice]
+          .grid_12
+            -if flash[:notice]
+              .success
+                = flash[:notice]
+            -if flash[:alert]
+              .notice
+                = flash[:alert]  
+            -#= render :partial => "shared/flash"
 
-            %p.alert
-              = flash[:alert]
           .clearfix
 
           = yield
  
-
     .clearfix
 
     .footer
-      = render :partial => "pages/footer"
+      = render :partial => "shared/footer"
 

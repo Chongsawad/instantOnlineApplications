@@ -5,4 +5,11 @@ $(function(){ $('#site-form').tabs();});
 $(function(){ $('#report-form').tabs();});
 $(function(){ $('#link-form').tabs();});
 $(function(){ $('#manage-account').tabs();});
-$(function(){ $('#manage-list').tabs();});
+$(function(){
+  $('div.navigation').css({'width' : '300px', 'float' : 'left'});
+  $('div.gallery_wrapper').css('display', 'block');
+});
+$(function(){	$('#thumbs').galleriffic({
+  imageContainerSel:      '#slideshow',
+  controlsContainerSel:   '#controls'});
+});

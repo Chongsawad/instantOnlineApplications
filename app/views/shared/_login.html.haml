@@ -1,0 +1,17 @@
+#user
+  - if user_signed_in?
+    Hi
+    %a{ :href=> edit_user_registration_url }
+      = current_user.username
+      = image_tag "online.png", :size => "16x16"
+    %a{ :href=> manage_url }
+      Manage Sites
+      = image_tag "manage.png", :size => "16x16"
+    %a{ :href=> destroy_user_session_url }
+      Sign out
+      = image_tag "signout.png", :size => "16x16"
+
+  - else
+    =link_to "Log in", new_user_session_path
+    |
+    =link_to "Sign up", new_user_registration_path

@@ -12,7 +12,9 @@ class DeployingJob
 
     puts "Initialize Job Detail"
     @app_name = user.id.to_s() + "_" + site[:name]
+    @site_name = site[:name]
     @app_path = project[:path]
+    @user = user[:username]
     @siteId = site[:id]
     @path = site[:path]
   end
@@ -27,7 +29,7 @@ class DeployingJob
 
   server {
     listen		80;
-    server_name 	#{@app_name}.local;
+    server_name 	#{@site_name}.local;
     root  		#{@path}/current/public;
     passenger_enabled 	on;
   }
@@ -42,7 +44,6 @@ EOF
   # method for Delayed_job calling
   def perform
     begin
-
       #Nginx configuration
       self.conf_nginx
 
@@ -57,10 +58,24 @@ EOF
 
       puts "\n\n\n *** Email to User *** \n\n\n "
       #UserMailer.deliver_mail_finished
-
+      
+      puts "\n\n\n *** Update site status *** \n\n\n "
+      self.update_site_status(@siteID)
     rescue 
       puts "\n\n\n\n\n\n\n\n\n\n Roll back \n\n\n\n\n\n\n\n\n"
-    end 
+    end
+    
+  end
+
+  def update_site_status(id)
+    @s = Site.find(id)
+    @s.status = "Done"
+    if @s.save
+      return true
+    else
+      puts "ERROR while update #{@s.name} record"
+      return false
+    end
   end
 end
 

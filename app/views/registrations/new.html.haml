@@ -1,13 +1,17 @@
-%h2
-  Sign up
-- semantic_form_for resource_name, resource, :url => registration_path(resource_name) do |form|
-  - form.inputs do
-    = form.input :username
-    = form.input :email
-    = form.input :password, :as => :password
-    = form.input :password_confirmation, :as => :password
- 
-  = form.buttons
-
+.grid_3
   %br
-  = render :partial => "shared/devise_links"
+.grid_4
+  %h2
+    Sign up
+  - semantic_form_for resource_name, resource, :url => registration_path(resource_name) do |form|
+    - form.inputs do
+      = form.input :username
+      = form.input :email
+      = form.input :password, :as => :password
+      = form.input :password_confirmation, :as => :password
+
+    = form.buttons
+
+    %br
+    = render :partial => "shared/devise_links"
+.clearfix

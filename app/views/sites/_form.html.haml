@@ -2,7 +2,7 @@
   = form.error_messages
   - form.inputs do
     = form.input :name, :label => "Site name", :hint => ".project.com", :input_html => { :size => "10" }
-    = form.input :description, :as => :text, :label => "Site info", :input_html => { :size => "5x5" }
+    = form.input :description, :as => :text, :label => "Site info", :input_html => { :size => "5x5" }, :hint => "Type about your website"
 
     = form.input :project_id, :as => :hidden
     

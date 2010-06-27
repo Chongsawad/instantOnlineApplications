@@ -1,8 +1,9 @@
 ActionController::Routing::Routes.draw do |map|
   map.resources :sites
-  map.devise_for :users
+  map.devise_for :users , :has_many => "sites"
   map.resources :projects , :has_many => "sites"
-  map.manage 'manage', :controller => "sites", :action => 'manage'
+  map.connect 'sites/:id/re_deploy',:controller => "sites", :action => 're_deploy'
+  map.manage 'manage', :controller => "sites", :action => 'index'
   map.support 'support', :controller => 'pages', :action => 'support'
   map.contact 'contact', :controller => 'pages', :action => 'contact'
   # The priority is based upon order of creation: first created -> highest priority.

@@ -24,11 +24,6 @@ class SitesController < ApplicationController
     end
   end
 
-  def manage
-    @sites = current_user.sites
-  end
-
-
   # GET /sites/new
   # GET /sites/new.xml
   def new
@@ -61,7 +56,7 @@ class SitesController < ApplicationController
     
     @project = Project.find(@site.project_id)
 
-    # Delayed::Job.enqueue(DeployingJob.new(current_user, @project, @site))
+    Delayed::Job.enqueue(DeployingJob.new(current_user, @project, @site))
 
     respond_to do |format|
       if @site.save
@@ -72,6 +67,32 @@ class SitesController < ApplicationController
         format.xml  { render :xml => @site.errors, :status => :unprocessable_entity }
       end
     end
+  end
+
+  def re_deploy
+    @site = Site.find(params[:id])
+
+    if @site.path     
+      @site.status = "Re-deploying!"
+      @user = @site.user
+      @project = @site.project
+      
+      Delayed::Job.enqueue(DeployingJob.new(@user, @project, @site))
+
+      respond_to do |format|
+        if @site.save
+          format.html { redirect_to(@site, :notice => "Re-deploying job has already been enqueued. Wait for 5-10 minutes for running process.") }
+          format.xml  { head :ok }
+        else
+          format.html { render :action => "show" }
+          format.xml  { render :xml => @site.errors, :status => :unprocessable_entity }
+        end
+      end
+
+    else
+      redirect_to(@site, :notice => "ERROR FILE PATH. Please contact administrator.")
+    end
+
   end
 
   # PUT /sites/1
@@ -90,15 +111,60 @@ class SitesController < ApplicationController
     end
   end
 
+  def site_destroy(site)
+    begin
+      puts "\n\n\n----------- SITE_DESTROYING -----------\n\n\n"
+      puts "PATH = #{site.path}"
+      puts "ROOT = #{RAILS_ROOT}"
+      puts "APPNAME=#{site.user_id}_#{site.name}"
+
+      if system("sh -c 'cd #{site.path}/current/; cap APPNAME=#{site.user_id}_#{site.name} database:drop;'")
+        puts "\n----------- Delete Database : #{site.user_id}_#{site.name} -----------\n"
+
+        if system("sh -c 'rm -R #{RAILS_ROOT}/site_info/#{current_user.id}_#{site.name}.*'")
+          puts "\n----------- Delete #{RAILS_ROOT}/site_info/#{current_user.id}_#{site.name} -----------\n"
+
+          if system("sh -c 'rm -R #{site.path}'")
+            puts "\n----------- Delete #{site.path}   -----------\n"
+            return true
+          else
+            puts "\n----------- Cannot delete #{site.path}   -----------\n"
+            return false
+          end
+
+        else
+          puts "\n----------- Cannot delete #{RAILS_ROOT}/site_info/#{current_user.id}_#{site.name} -----------\n"
+          return false
+        end
+
+      else  
+        puts "\n----------- Cannot delete Database : #{site.user_id}_#{site.name} -----------\n"
+        return false
+      end
+
+    rescue
+      puts "\n\n\n----------- DESTROY ERROR!   -----------\n\n\n"
+      return false
+    end
+
+  end
+
   # DELETE /sites/1
   # DELETE /sites/1.xml
   def destroy
     @site = Site.find(params[:id])
-    @site.destroy
+    
+    if site_destroy(@site)
+      puts "\n\n\n----------- DESTROYED -----------\n\n\n"
+      puts "SITE = #{@site.name}"
+      @site.destroy
 
-    respond_to do |format|
-      format.html { redirect_to(sites_url) }
-      format.xml  { head :ok }
+      respond_to do |format|
+        format.html { redirect_to(sites_url, :notice => "Your site was successfully deleted.") }
+        format.xml  { head :ok }
+      end
+    else
+      redirect_to(@site, :notice => "DATABASE DROP ERROR!. Please contact administrator.")
     end
   end
 end

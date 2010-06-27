@@ -3,14 +3,11 @@
     %li
       %a{:href=>"#report"}
         Report
-
   #report
     %h3
-      Your site has been created
-    %hr
-    
-    = render :partial => "detail", :object => "site"
-    %hr
-
-    = render :partial => "projects/detail", :object => "project"
+      = @site.name.to_s().capitalize + ".project.com"
+      are deploying. 
+    %p
+      The deploying process will take about 5-10 minutes. We will inform you immediately after the procedure done.
+   
     %hr

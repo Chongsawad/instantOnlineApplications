@@ -1,16 +1,16 @@
-%table
-  %tr
-    %td
-      Project name
-    %td
-      = @project.name
-  %tr
-    %td
-      Project info
-    %td
-      = @project.content
-  %tr
-    %td
-      Project screenshot
-    %td
-      = image_tag(@project.screenshot.url)
+%h3
+  =h @project.name
+
+.left
+  =image_tag("#{@project.img_path}",:height => "128", :width => "128")
+
+.right
+  = @project.content
+  %hr
+
+  =h @project.detail
+  %hr
+  =h @project.detail
+  =h @project.detail
+  =h @project.detail
+  %hr

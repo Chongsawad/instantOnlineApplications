@@ -10,3 +10,5 @@
   %p
     Email :
     =h current_user.email
+  %p
+    =button_to "Edit profile", edit_user_registration_path, :method => :get

@@ -14,32 +14,38 @@
   %body
     .header
       .container_12
-        .grid_12#user
-          - if user_signed_in?
-            Logged in as
-            = current_user.username
-          - else
-            =link_to "Log in", new_user_session_path
-            |
-            =link_to "Sign up", new_user_registration_path
-        .grid_6#logo
-          %h1 Instant Online Application
-        .grid_6#nav
-          = render :partial => "pages/nav"
-          .clearfix
+        .grid_12
+          = render :partial => "shared/login"
 
-        -# .grid_5#logo
-        -#  %img{:src => "/images/logo.png"}
+        .grid_6#logo
+          =link_to "<h1>Instant Online Application</h1>", projects_path
+
+        .grid_6#nav
+          = render :partial => "shared/nav"
+
+        .grid_12
+          %hr
+        .clearfix
+
 
     .content
       .container_12
-        .grid_12#application-header
-        #flash-notice
-          = flash[:notice]
+        .grid_12
+          -if flash[:notice]
+            .success
+              = flash[:notice]
+
+          -if flash[:alert]
+            .notice
+              = flash[:alert]
+
+        .clearfix
+
         = yield
+
     .clearfix
 
     .footer
-      = render :partial => "pages/footer"
+      = render :partial => "shared/footer"
     
 
