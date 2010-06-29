@@ -1,10 +1,10 @@
-#manage-sites.grid_12
-  %h3
+
+- content_for :header do
+  %h1
     Site Management
-  %hr
 .clearfix
 #manage-list.grid_12
-  = render :partial => 'list'
+  = render :partial => 'manage'
 
 .grid_12
   = link_to "Go to Online Store", projects_path

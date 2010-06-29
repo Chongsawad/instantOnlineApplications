@@ -1,0 +1,29 @@
+%p
+  Manage your site(s) through:
+%ul
+  %li
+    %h3
+      = link_to 'Site Configurations', edit_site_path(@site)
+    %p
+      Edit/Change any settings for
+      %span
+        = @site.name.downcase + ".project.com"
+  %hr
+  %li
+    = link_to 'Site Managements', manage_path
+    %p
+      Manage/Organize all of your sites.
+  %hr
+  %li
+    = link_to 'Delete all data', :controller => "sites", :action => "cleanup"
+    %p
+      Clean up site's database. All of data stored in database will be deleted.
+  %hr
+  %li
+    = link_to 'Re-Install', :controller => "sites", :action => "re_deploy"
+    %p
+      Rebuild the application. It may affect to databases and files.
+  %hr
+  %li
+    = link_to 'Remove this site(optional required)', site_path(@site.id), :method => :delete, :confirm => "Are you sure to delete this site? All of data not only in public folder but also its database too."
+  %hr
