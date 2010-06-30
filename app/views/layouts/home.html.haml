@@ -4,29 +4,26 @@
     = stylesheet_link_tag 'reset'
     = stylesheet_link_tag 'text'
     = stylesheet_link_tag '960'
-    -#= stylesheet_link_tag 'styleLogin'
     = stylesheet_link_tag 'application'
-    -#= stylesheet_link_tag 'fx.slide'
-    -#%script{:type => "text/javascript", :src  => "../javascripts/mootools-1.2-core-yc.js"}
-    -#%script{:type => "text/javascript", :src  => "../javascripts/mootools-1.2-more.js"}
-    -#%script{:type => "text/javascript", :src  => "../javascripts/fx.slide.js"}
             
   %body
     .header
       .container_12
         .grid_12
           = render :partial => "shared/login"
+          #nav
+            = render :partial => "shared/nav"
 
-        .grid_6#logo
-          =link_to "<h1>Instant Online Application</h1>", projects_path
+        -#.grid_6#logo
+        -#=link_to "<h1>Instant Online Application</h1>", projects_path
+        -#.grid_6#nav
+          
 
-        .grid_6#nav
-          = render :partial => "shared/nav"
-
-        .grid_12
-          %hr
         .clearfix
 
+        .grid_12#title
+          %h1
+            Instant Online Application
 
     .content
       .container_12
@@ -40,6 +37,19 @@
               = flash[:alert]
 
         .clearfix
+
+        .grid_12
+          %ul
+            %li
+              %h2
+                Zero setting/Configuration & Free trial
+            %li
+              %h2
+                Onlien support 24-hours
+            %li
+              %h2
+                The powerful webs are now available
+          .clearfix
 
         = yield
 

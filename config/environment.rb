@@ -45,19 +45,28 @@ Rails::Initializer.run do |config|
   # config.i18n.default_locale = :de
 
     # Setup for production - deliveries, no errors raised
-  config.action_mailer.default_url_options = { :host => 'localhost:3000' }
+  #config.action_mailer.default_url_options = { :host => 'localhost:3000' }
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.perform_deliveries = true
-  config.action_mailer.raise_delivery_errors = true 
-  config.action_mailer.default_charset = "utf-8"
-
+  config.action_mailer.raise_delivery_errors = true
+  #config.action_mailer.default_charset = "utf-8"
   config.action_mailer.smtp_settings = {
-    :address => "smtp@gmail.com",
-    :port => 587,
-    :domain => "chongsawad252@gmail.com",
+    :enable_starttls_auto => true,
+    :address        => 'smtp.gmail.com',
+    :port           => 587,
+    :domain         => 'localhost',
     :authentication => :plain,
-    :user_name => "chongsawad252@gmail.com",
-    :password => "kckctv9t2925"
+    :user_name      => 'chongsawad252@gmail.com',
+    :password       => 'kckctv9t2925'
   }
+
+#  config.action_mailer.smtp_settings = {
+#    :address 		=> "smtp@gmail.com",
+#    :port 		=> 587,
+#    :domain 		=> "localhost",
+#    :authentication 	=> :plain,
+#    :user_name 		=> "chongsawad252@gmail.com",
+#    :password 		=> "kckctv9t2925"
+#  }
 
 end

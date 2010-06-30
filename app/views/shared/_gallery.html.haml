@@ -8,10 +8,10 @@
   %ul{ :class => "thumbs noscript" }
     %li
       %a.thumb{:href => @project.img_path, :title => "Title1"}
-        =image_tag("radiant.png",:height => "84", :width => "84")
+        =image_tag(@project.img_path,:height => "84", :width => "84")
     %li
       %a.thumb{:href => @project.img_path, :title => "Title1"}
-        =image_tag("#{@project.img_path}",:height => "84", :width => "84")
+        =image_tag(@project.img_path,:height => "84", :width => "84")
     %li
       %a.thumb{:href => @project.img_path, :title => "Title1"}
-        =image_tag("#{@project.img_path}",:height => "84", :width => "84")
+        =image_tag(@project.img_path,:height => "84", :width => "84")

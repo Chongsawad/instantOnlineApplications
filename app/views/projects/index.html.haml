@@ -1,4 +1,12 @@
-- @projects.each do |project|
-  .grid_3
-    .product
-      = render :partial => "project", :object => project
+- content_for :header do
+  Instant Online Application
+- content_for :sub_header do
+  Online Store
+
+.products
+  - @projects.each do |project|
+    .grid_3
+      .product
+        = render :partial => "project", :object => project
+
+

@@ -1,7 +1,6 @@
 %html
   %head
     %title Instant Online Applications
-    -# = stylesheet_link_tag :all
     = stylesheet_link_tag 'reset'
     = stylesheet_link_tag 'text'
     = stylesheet_link_tag '960'
@@ -22,15 +21,15 @@
         .container_12
           .grid_12
             = render :partial => "shared/login"
+            #nav
+              = render :partial => "shared/nav"
 
-          .grid_6#logo
-            =link_to "<h1>Instant Online Application</h1>", projects_path
-
-          .grid_6#nav
-            = render :partial => "shared/nav"
-          .grid_12
-            %hr
           .clearfix
+
+          .grid_12#title
+            %h1
+              = yield :header
+
 
       .content
         .container_12
@@ -41,6 +40,9 @@
             -if flash[:alert]
               .notice
                 = flash[:alert]  
+            -if flash[:warning]
+              .error
+                = flash[:warning]
             -#= render :partial => "shared/flash"
 
           .clearfix

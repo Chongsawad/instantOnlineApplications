@@ -2,6 +2,7 @@ class SitesController < ApplicationController
   # GET /sites
   # GET /sites.xml
   before_filter :authenticate_user!
+
   def index
     @sites = current_user.sites
 
@@ -47,19 +48,18 @@ class SitesController < ApplicationController
   def create
     
     @site = Site.new(params[:site])
-
+    @project = Project.find(@site.project_id)
     # site_path is the destination path which store all of resource of this site
     # site_path should be the same as the path in capistrano file(cap file)
     @site.path = "/home/inice/InstantSOA/deploy_cap/inice/#{current_user.id}_#{params[:site][:name]}"
     @site.status = "Deploying!"
     @site.user = current_user
     
-    @project = Project.find(@site.project_id)
-
-    Delayed::Job.enqueue(DeployingJob.new(current_user, @project, @site))
 
     respond_to do |format|
       if @site.save
+        Delayed::Job.enqueue(DeployingJob.new(current_user, @project, @site))
+
         format.html { redirect_to(@site, :notice => 'Site was successfully created.') }
         format.xml  { render :xml => @site, :status => :created, :location => @site }
       else
@@ -115,25 +115,27 @@ class SitesController < ApplicationController
     begin
       puts "\n\n\n----------- SITE_DESTROYING -----------\n\n\n"
       puts "PATH = #{site.path}"
-      puts "ROOT = #{RAILS_ROOT}"
       puts "APPNAME=#{site.user_id}_#{site.name}"
 
       if system("sh -c 'cd #{site.path}/current/; cap APPNAME=#{site.user_id}_#{site.name} database:drop;'")
         puts "\n----------- Delete Database : #{site.user_id}_#{site.name} -----------\n"
 
-        if system("sh -c 'rm -R #{RAILS_ROOT}/site_info/#{current_user.id}_#{site.name}.*'")
+        if system("sh -c 'test -e #{RAILS_ROOT}/site_info/#{current_user.id}_#{site.name}.*'")
+          system("sh -c 'rm -Rf #{RAILS_ROOT}/site_info/#{current_user.id}_#{site.name}.*'")
           puts "\n----------- Delete #{RAILS_ROOT}/site_info/#{current_user.id}_#{site.name} -----------\n"
 
-          if system("sh -c 'rm -R #{site.path}'")
+          if system("sh -c 'test -e #{site.path}/'")
+            system("sh -c 'rm -Rf #{site.path}'")
             puts "\n----------- Delete #{site.path}   -----------\n"
             return true
           else
-            puts "\n----------- Cannot delete #{site.path}   -----------\n"
+            puts "\n----------- Cannot delete application root path --> #{site.path}   -----------\n"
+            flash[:warning] = "Cannot delete application root path --> #{site.path}"
             return false
           end
 
         else
-          puts "\n----------- Cannot delete #{RAILS_ROOT}/site_info/#{current_user.id}_#{site.name} -----------\n"
+          puts "\n----------- Cannot delete sub-domain the confinguration file --> #{RAILS_ROOT}/site_info/#{current_user.id}_#{site.name} -----------\n"
           return false
         end
 
@@ -164,7 +166,7 @@ class SitesController < ApplicationController
         format.xml  { head :ok }
       end
     else
-      redirect_to(@site, :notice => "DATABASE DROP ERROR!. Please contact administrator.")
+      redirect_to(@site, :warning => "Remove site incomplete!. Please contact administrator.")
     end
   end
 end

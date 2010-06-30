@@ -2,7 +2,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :sites
   map.devise_for :users , :has_many => "sites"
   map.resources :projects , :has_many => "sites"
-  map.connect 'sites/:id/re_deploy',:controller => "sites", :action => 're_deploy'
+  map.connect 'sites/:id/reinstall',:controller => "sites", :action => 're_deploy'
   map.manage 'manage', :controller => "sites", :action => 'index'
   map.support 'support', :controller => 'pages', :action => 'support'
   map.contact 'contact', :controller => 'pages', :action => 'contact'
