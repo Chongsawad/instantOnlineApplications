@@ -1,3 +1,33 @@
+#thumbnail-list
+  - z = 0
+  - for site in @sites
+    .grid_6
+      .thumbnail
+        .thumb
+          =image_tag('rails.png',:size => '80x100')
+        .detail
+          %h2
+            =link_to "#{site.name}", edit_site_path(site)
+          %p
+            = link_to "#{site.project.name}", new_project_site_path(site.project.id)
+          .status
+            %input{:type => "text", :value => "#{site.status}", :readonly => true}
+          .suggestion
+            %p
+              Nothing wrong. ^_^
+          %hr
+        .setting
+          = link_to "Config"
+          = link_to "Remove"
+          = link_to "more..."
+
+    - z = z + 1
+
+
+
+
+
+
 %table#list-table
   %thead
     %tr

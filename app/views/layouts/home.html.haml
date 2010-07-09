@@ -5,6 +5,11 @@
     = stylesheet_link_tag 'text'
     = stylesheet_link_tag '960'
     = stylesheet_link_tag 'application'
+    -#= stylesheet_link_tag 'demo2'
+    = javascript_include_tag "jquery"
+    = javascript_include_tag "jquery.dimensions"
+    = javascript_include_tag "jquery.accordion"
+    = javascript_include_tag "home"
             
   %body
     .header
@@ -23,7 +28,7 @@
 
         .grid_12#title
           %h1
-            Instant Online Application
+            = yield :header
 
     .content
       .container_12
@@ -37,19 +42,6 @@
               = flash[:alert]
 
         .clearfix
-
-        .grid_12
-          %ul
-            %li
-              %h2
-                Zero setting/Configuration & Free trial
-            %li
-              %h2
-                Onlien support 24-hours
-            %li
-              %h2
-                The powerful webs are now available
-          .clearfix
 
         = yield
 

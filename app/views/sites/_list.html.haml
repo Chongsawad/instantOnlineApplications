@@ -1,8 +1,9 @@
-#manage-site-list
+-#manage-site-list
+.grid_12
   %h4
     Site List
   %p
     Sites available :
     =h @sites.count
 
-  = render :partial => 'detail', :object => "site"
+= render :partial => 'detail', :object => "site"

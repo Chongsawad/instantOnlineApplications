@@ -7,9 +7,6 @@ class DeployingJob
   #   site - specific information for each jobs
   def initialize(user,project,site)
 
-    puts "Info to User"
-    #UserMailer.deliver_mail_waiting
-
     puts "Initialize Job Detail"
     @app_name = user.id.to_s() + "_" + site[:name]
     @site_name = site[:name]
@@ -43,39 +40,41 @@ EOF
 
   # method for Delayed_job calling
   def perform
-    begin
-      #Nginx configuration
-      self.conf_nginx
-
-      puts "Deploying Job"
-      system("sh -c 'cd #{@app_path}/; cap deploy APPNAME=#{@app_name};'")
-
-      # Reload nginx after deploying has done
-      puts "Reload nginx"
-      system("sh -c 'sudo /etc/init.d/nginx reload'")
-      
-      puts " ^_^ Finished Job ^_^ ^_^ Finished Job ^_^ ^_^ Finished Job ^_^"
-
-      puts "\n\n\n *** Email to User *** \n\n\n "
-      #UserMailer.deliver_mail_finished
-      
-      puts "\n\n\n *** Update site status *** \n\n\n "
-      self.update_site_status(@siteID)
-    rescue 
-      puts "\n\n\n\n\n\n\n\n\n\n Roll back \n\n\n\n\n\n\n\n\n"
-    end
+    puts "Info to User"
     
+    #Nginx configuration
+
+    @s = Site.find(@siteId)
+
+    self.conf_nginx
+
+    puts "Deploying Job"
+
+    if system("sh -c 'cd #{@app_path}/; cap deploy APPNAME=#{@app_name};'")
+
+    # Reload nginx after deploying has done
+      puts "Reload nginx"
+
+      system("sh -c 'sudo /etc/init.d/nginx reload'")
+
+      puts "\n\n*** Email to User *** \n\n "
+
+      JobMailer.deliver_mail_finished
+
+      puts "\n\n *** Update site status *** \n\n "
+
+      
+      @s.status = "Online"
+      @s.save
+
+    else
+      puts "ERROR while deploying"
+
+      @s.status = "Deploying process Incomplete!"
+      @s.save
+    end
+
   end
 
-  def update_site_status(id)
-    @s = Site.find(id)
-    @s.status = "Done"
-    if @s.save
-      return true
-    else
-      puts "ERROR while update #{@s.name} record"
-      return false
-    end
-  end
 end
 

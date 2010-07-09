@@ -13,6 +13,14 @@
     = javascript_include_tag "jquery-1.4.2.min"
     = javascript_include_tag "jquery-ui-1.8.2.custom.min"
     = javascript_include_tag "jquery.galleriffic"
+
+    -#= stylesheet_link_tag 'ext-all'
+    -#= stylesheet_link_tag 'grid-examples'
+
+    -#= javascript_include_tag "ext-base"
+    -#= javascript_include_tag "ext-all"
+    -#= javascript_include_tag 'site_list'
+
     = javascript_include_tag "application"
 
   %body#application
@@ -28,7 +36,7 @@
 
           .grid_12#title
             %h1
-              = yield :header
+              = yield(:header) ||"Instant Online Application"
 
 
       .content

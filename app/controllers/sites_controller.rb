@@ -2,13 +2,14 @@ class SitesController < ApplicationController
   # GET /sites
   # GET /sites.xml
   before_filter :authenticate_user!
+  
 
   def index
     @sites = current_user.sites
 
     respond_to do |format|
       format.html # index.html.erb
-      format.xml  { render :xml => @sites }
+      format.json { render :json => @sites }
     end
   end
 

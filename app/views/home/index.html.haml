@@ -1,5 +1,38 @@
-.grid_12
-  %img{:src => "../images/trial.png"}
+- content_for :header do
+  Instant Online Application
+
+.grid_6
+  #img
+    = link_to(image_tag('templates.png', :size=>"420x320"),projects_path)
+
+.grid_6
+  #accordion
+    %h3
+      %a
+        Zero setting/Configuration & Free trial
+    %div
+      %p
+        Zero setting/Configuration & Free trial
+
+    %h3
+      %a
+        Onlien support 24-hours
+    %div
+      %p
+        Onlien support 24-hours
+
+    %h3
+      %a
+        The powerful webs are now available
+    %div
+      %p
+        The powerful webs are now available
+  .clearfix
+
+.grid_6
+  = link_to(image_tag('trial.png'),projects_path)
+
 .clearfix
-.grid_12
-  %img{:src => "../images/info_guide.png"}
+
+-#.grid_12
+-#  %img{:src => "../images/info_guide.png"}

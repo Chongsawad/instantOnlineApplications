@@ -1,25 +1,19 @@
-- form_for @project, :html => { :multipart => true } do |f|
-  = f.error_messages
-  %p
-    = f.label :name
-    = f.text_field :name
-  %p
-    = f.label :content
-    = f.text_field :content
-  %p
-    = f.label :img_path
+- semantic_form_for @project, :html => { :multipart => true } do |f|
+  - f.inputs do
+    = f.error_messages
+
+    = f.input :name
+
+    = f.input :content
+
     = f.file_field :screenshot
-  %p
-    = f.label :path
-    = f.text_field :path
-  %p
-    = f.label "More Detail"
-    = f.text_field :detail
-  %p
-    = f.label "Link to Project(Officiai Site)"
-    = f.text_field :url_project
-  %p
-    = f.label "Link to Demo"
-    = f.text_field :url_demo
-  %p
-    = f.submit 'submit'
+
+    = f.input :path
+
+    = f.input :detail
+
+    = f.input :url_project
+
+    = f.input :url_demo
+
+  = f.buttons
