@@ -9,6 +9,7 @@ class DeployingJob
 
     puts "Initialize Job Detail"
     @app_name = user.id.to_s() + "_" + site[:name]
+    @user_id = user.id
     @site_name = site[:name]
     @app_path = project[:path]
     @user = user[:username]
@@ -50,7 +51,7 @@ EOF
 
     puts "Deploying Job"
 
-    if system("sh -c 'cd #{@app_path}/; cap deploy APPNAME=#{@app_name};'")
+    if system("sh -c 'cd #{@app_path}/; cap deploy USER=#{@user_id} APPNAME=#{@app_name};'")
 
     # Reload nginx after deploying has done
       puts "Reload nginx"

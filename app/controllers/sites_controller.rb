@@ -52,7 +52,7 @@ class SitesController < ApplicationController
     @project = Project.find(@site.project_id)
     # site_path is the destination path which store all of resource of this site
     # site_path should be the same as the path in capistrano file(cap file)
-    @site.path = "/home/inice/InstantSOA/deploy_cap/inice/#{current_user.id}_#{params[:site][:name]}"
+    @site.path = "/home/inice/users/#{current_user.id}/#{current_user.id}_#{params[:site][:name]}"
     @site.status = "Deploying!"
     @site.user = current_user
     
