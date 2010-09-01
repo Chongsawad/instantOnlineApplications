@@ -1,0 +1,1 @@
+ALTER TABLE `ioa_development`.`applications` RENAME TO `ioa_development`.`products`;
