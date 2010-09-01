@@ -11,13 +11,13 @@
           %p
             = link_to "#{site.project.name}", new_project_site_path(site.project.id)
           .status
-            %input{:type => "text", :value => "#{site.status}", :readonly => true}
+            %input{:type => "text", :value => "#{site.status}", :readonly => true, :size => "40"}
           .suggestion
             %p
               Nothing wrong. ^_^
           %hr
         .setting
-          = link_to "Config"
+          = link_to "Config", site
           = link_to "Remove"
           = link_to "more..."
 

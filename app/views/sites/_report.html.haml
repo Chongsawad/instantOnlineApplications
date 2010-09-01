@@ -1,13 +1,38 @@
-#report-form
-  %ul
-    %li
-      %a{:href=>"#report"}
-        Report
-  #report
-    %h3
-      = @site.name.to_s().capitalize + ".project.com"
-      are deploying. 
-    %p
-      The deploying process will take about 5-10 minutes. We will inform you immediately after the process done.
-   
-    %hr
+-# #report-form
+-#  %ul
+-#    %li
+-#      %a{:href=>"#report"}
+-#        Report
+-# #report
+.box
+  %h3
+    Report
+  %table#list-table
+    %thead
+    %tbody
+      %tr.odd
+        %td
+          Site name
+        %td
+          = link_to @site.name.to_s().capitalize + ".project.com", "http://" + @site.name.to_s().capitalize + ".project.com"
+      %tr.even
+        %td
+          Project
+        %td
+          = @site.project.name
+      %tr.odd
+        %td
+          Site administrator
+        %td
+          = link_to @site.name.to_s().capitalize + ".project.com" + "/admin", "http://" + @site.name.to_s().capitalize + ".project.com" + "/admin"
+      %tr.even
+        %td
+          Username
+        %td
+          admin
+      %tr.odd
+        %td
+          Password
+        %td
+          admin
+%hr

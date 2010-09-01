@@ -52,14 +52,15 @@ class SitesController < ApplicationController
     @project = Project.find(@site.project_id)
     # site_path is the destination path which store all of resource of this site
     # site_path should be the same as the path in capistrano file(cap file)
-    @site.path = "/home/inice/InstantSOA/deploy_cap/inice/#{current_user.id}_#{params[:site][:name]}"
+    @site.path = "~/Project/deployApps/#{current_user.id}_#{params[:site][:name]}"
+    # @site.path = "/home/inice/InstantSOA/deploy_cap/inice/#{current_user.id}_#{params[:site][:name]}"
     @site.status = "Deploying!"
     @site.user = current_user
     
 
     respond_to do |format|
       if @site.save
-        Delayed::Job.enqueue(DeployingJob.new(current_user, @project, @site))
+        #Delayed::Job.enqueue(DeployingJob.new(current_user, @project, @site))
 
         format.html { redirect_to(@site, :notice => 'Site was successfully created.') }
         format.xml  { render :xml => @site, :status => :created, :location => @site }

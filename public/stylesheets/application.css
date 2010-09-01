@@ -196,3 +196,15 @@ p, table, table tr, table tr td{
        position:relative;
        width:435px;
 }
+.box {
+	background:none repeat scroll 0 0 #F2F2F2;
+	border:1px solid #DDDDDD;
+	margin-bottom:20px;
+	padding:15px;
+}
+
+.project-gallery{
+  border: 1px solid;
+  float: left;
+  width: 450px;
+}

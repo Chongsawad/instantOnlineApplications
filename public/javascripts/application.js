@@ -6,9 +6,9 @@ $(function(){
 $(function(){
   $('#site-form').tabs();
 });
-$(function(){
+/*$(function(){
   $('#report-form').tabs();
-});
+});*/
 $(function(){
   $('#link-form').tabs();
 });

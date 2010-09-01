@@ -1,0 +1,59 @@
+.container_12
+  .grid_12
+    .project-gallery
+      #gallery.gallery_wrapper
+        -##controls.controls
+        .slideshow-container
+          #loading.loader
+          #slideshow.slideshow
+
+      #thumbs.navigation
+        %ul{ :class => "thumbs noscript" }
+          %li
+            %a.thumb{:href => @project.img_path, :title => "Title1"}
+              =image_tag(@project.img_path,:height => "84", :width => "84")
+          %li
+            %a.thumb{:href => @project.img_path, :title => "Title1"}
+              =image_tag(@project.img_path,:height => "84", :width => "84")
+          %li
+            %a.thumb{:href => @project.img_path, :title => "Title1"}
+              =image_tag(@project.img_path,:height => "84", :width => "84")
+
+
+    .project-detail
+      
+      .left
+      .right
+        %h3
+          =h @project.name
+        = @project.content
+        %hr
+
+        =h @project.detail
+        %hr
+        =h @project.detail
+        =h @project.detail
+        =h @project.detail
+        %hr
+      .right
+        %h3
+          =h @project.name
+        %p
+          Resources
+        %table#about-project
+          %tr
+            %td
+              Demo
+            %td
+              = link_to @project.url_demo;
+          %tr
+            %td
+              Official site
+            %td
+              = link_to @project.url_project;
+  .clearfix
+  .grid_12
+    %div{:style => "float:left"}
+      = link_to 'Back', projects_path
+    %div{:style => "float:right"}
+      = link_to image_tag("button_install.png"), new_project_site_path(@project)
