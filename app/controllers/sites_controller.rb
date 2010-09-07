@@ -3,12 +3,11 @@ class SitesController < ApplicationController
   # GET /sites.xml
   before_filter :authenticate_user!
   
-
   def index
     @sites = current_user.sites
 
     respond_to do |format|
-      format.html # index.html.erb
+      format.html
       format.json { render :json => @sites }
     end
   end
@@ -49,6 +48,7 @@ class SitesController < ApplicationController
   def create
     
     @site = Site.new(params[:site])
+    
     @project = Project.find(@site.project_id)
     # site_path is the destination path which store all of resource of this site
     # site_path should be the same as the path in capistrano file(cap file)
@@ -60,18 +60,23 @@ class SitesController < ApplicationController
     
 
     respond_to do |format|
-      if @site.save
-        #Delayed::Job.enqueue(DeployingJob.new(current_user, @project, @site))
+      
+      if Site.find_by_name(@site.name) != nil
+          format.html { redirect_to(@site, :error => 'Cannot create site with name.') }
+      else    
+        if @site.save
+          #Delayed::Job.enqueue(DeployingJob.new(current_user, @project, @site))
 
-        format.html { redirect_to(@site, :notice => 'Site was successfully created.') }
-        format.xml  { render :xml => @site, :status => :created, :location => @site }
-      else
-        format.html { render :action => "new" }
-        format.xml  { render :xml => @site.errors, :status => :unprocessable_entity }
+          format.html { redirect_to(@site, :notice => 'Site was successfully created.') }
+          format.xml  { render :xml => @site, :status => :created, :location => @site }
+        else
+          format.html { render :action => "new" }
+          format.xml  { render :xml => @site.errors, :status => :unprocessable_entity }
+        end
       end
     end
   end
-
+  
   def re_deploy
     @site = Site.find(params[:id])
 
@@ -80,7 +85,10 @@ class SitesController < ApplicationController
       @user = @site.user
       @project = @site.project
       
-      Delayed::Job.enqueue(DeployingJob.new(@user, @project, @site))
+      @site.re_deploy
+      #deploy(@user, @project, @site)
+      
+      #Delayed::Job.enqueue(DeployingJob.new(@user, @project, @site))
 
       respond_to do |format|
         if @site.save
@@ -152,6 +160,15 @@ class SitesController < ApplicationController
       return false
     end
 
+  end
+  
+  # CLEAN /sites/:id/clean
+  def clean_database
+
+    respond_to do |format|
+      format.html { redirect_to(sites_url, :notice => "Database was successfully cleaned.") }
+      format.xml  { head :ok }
+    end
   end
 
   # DELETE /sites/1

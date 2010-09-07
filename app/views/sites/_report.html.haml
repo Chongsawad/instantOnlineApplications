@@ -4,35 +4,65 @@
 -#      %a{:href=>"#report"}
 -#        Report
 -# #report
-.box
+
+.left
   %h3
-    Report
-  %table#list-table
-    %thead
-    %tbody
-      %tr.odd
-        %td
-          Site name
-        %td
-          = link_to @site.name.to_s().capitalize + ".project.com", "http://" + @site.name.to_s().capitalize + ".project.com"
-      %tr.even
-        %td
-          Project
-        %td
-          = @site.project.name
-      %tr.odd
-        %td
-          Site administrator
-        %td
-          = link_to @site.name.to_s().capitalize + ".project.com" + "/admin", "http://" + @site.name.to_s().capitalize + ".project.com" + "/admin"
-      %tr.even
-        %td
-          Username
-        %td
-          admin
-      %tr.odd
-        %td
-          Password
-        %td
-          admin
+    SITE INFORMATION
+.right
+  %h3
+    = link_to "List All", manage_path
+.clearfix
+.report-status
+
+  -if @site.status == "Online"
+
+    = image_tag("deploy_ok.png")
+
+  -else
+
+    = image_tag("waiting.png")
+  
+  %h6 
+    Status : 
+    -if @site.status == nil
+      %span
+        Undefined!
+    -else
+      %span.tick
+        =h @site.status.to_s().capitalize
+
+.report-list{:style=>"width:65%;"}
+
+  = render :partial => "report_table"
+  
+.right
+
+  %h4
+    = link_to "Edit Site", edit_project_site_path(@site)
+  
 %hr
+
+%h3
+  TOOLS
+
+%ul.tools-list
+  %li 
+    = link_to "Install Application"
+    
+  %li 
+    = link_to 'ReInstall Application', :controller => "sites", :action => "re_deploy"
+    .notice-text
+      Rebuild the application. It may affect to databases and files.
+      
+  %li 
+    = link_to 'Delete all data', :controller => "sites", :action => "clean_database"
+    .notice-text
+      Clean up site's database. All of data stored in database will be deleted.
+      
+  %li 
+    = link_to 'Uninstall Application'
+    .notice-text
+      Delete this application. All of data will be deleted.
+    
+  %li
+    = link_to 'Remove Site', site_path(@site.id), :method => :delete, :confirm => "Are you sure to delete this site? All of data not only in public folder but also its database too."

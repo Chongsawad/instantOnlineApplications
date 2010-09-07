@@ -1,0 +1,51 @@
+%table#list-table{:style=>"width:100%"}
+  %thead
+  
+  %tbody
+  
+    %tr.odd
+    
+      %td
+        Site name
+        
+      %td
+        = link_to @site.name.to_s().capitalize + ".project.com", "http://" + @site.name.to_s().capitalize + ".project.com"
+        
+        .notice-text
+          If you would like to change your domain, Please contact our staff
+          
+    %tr.even
+      %td
+        Site description
+        
+      %td
+        =h @site.description.to_s().capitalize
+        
+    %tr.odd
+    
+      %td
+        Project
+        
+      %td
+        = link_to @site.project.name, project_path(@site.project)
+      
+    %tr.even
+    
+      %td
+        Project Version
+        
+      %td
+        (Undefined)
+        
+    %tr.odd
+    
+      %td
+        Site administrator
+        
+      %td
+        = link_to @site.name.to_s().capitalize + ".project.com" + "/admin", "http://" + @site.name.to_s().capitalize + ".project.com" + "/admin"
+        
+        .notice-text
+          logging by using username: <strong>admin </strong> and password: <strong>admin</strong>
+          
+        
