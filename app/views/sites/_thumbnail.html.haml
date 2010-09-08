@@ -1,20 +1,29 @@
 - z = 0
 - for site in @sites
-  .grid_12
-    .thumbnail
-      .setting
-        = link_to "Edit profile", edit_site_path(site)
-        = link_to "More…"
-      .thumbnail-image
-        =image_tag(site.project.screenshot_file_name,:size => '80x100')
-      .detail
-        %h2
-          = link_to "#{site.name}", site_path(site)
-        %p
-          = link_to "#{site.project.name}", project_path(site.project.id)
-        .thumbnail-status
-          ONLINE
-        .left
-        = site.status
+  .grid_6
+    %a{:href => site_path(site)}
+      .thumbnail
+        .thumbnail-image
+          =image_tag(site.project.screenshot_file_name,:size => '80x100')
+        
+        .thumbnail-detail
+          %h2
+            = link_to "#{site.name}.project.com", site_path(site)
+      
+          %p
+            = link_to "Background Application : <strong>#{site.project.name}</strong>", project_path(site.project.id)
+      
+          .thumbnail-status
+            -if site.status == "Online"
+              .thumbnail-status-success
+                = site.status
+
+            -else
+              .thumbnail-status-error
+                = site.status
+      
+        .thumbnail-setting
+          = link_to "Edit", edit_site_path(site)
+          = link_to "More…", site_path(site)
 
   - z = z + 1

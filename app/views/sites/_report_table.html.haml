@@ -1,8 +1,6 @@
-%table#list-table{:style=>"width:100%"}
+%table#list-table{:width=>"100%"}
   %thead
-  
   %tbody
-  
     %tr.odd
     
       %td
@@ -11,7 +9,7 @@
       %td
         = link_to @site.name.to_s().capitalize + ".project.com", "http://" + @site.name.to_s().capitalize + ".project.com"
         
-        .notice-text
+        .note
           If you would like to change your domain, Please contact our staff
           
     %tr.even
@@ -45,7 +43,7 @@
       %td
         = link_to @site.name.to_s().capitalize + ".project.com" + "/admin", "http://" + @site.name.to_s().capitalize + ".project.com" + "/admin"
         
-        .notice-text
+        .note
           logging by using username: <strong>admin </strong> and password: <strong>admin</strong>
           
         

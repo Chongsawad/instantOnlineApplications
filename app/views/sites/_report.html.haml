@@ -1,68 +1,38 @@
--# #report-form
--#  %ul
--#    %li
--#      %a{:href=>"#report"}
--#        Report
--# #report
+%table#report.box
+  %thead
+    %tr
+      %th
+        %h3
+          Status
+      %th
+        %h3
+          Information
+  %tbody
+    %tr
+      %td#report-status
+        -if @site.status == "Online"
+          = image_tag("deploy_ok.png")
 
-.left
-  %h3
-    SITE INFORMATION
-.right
-  %h3
-    = link_to "List All", manage_path
+        -else
+          = image_tag("waiting.png")
+
+        %h6 
+          Status : 
+          -if @site.status == nil
+            %span
+              Undefined!
+          -else
+            %span.tick
+              =h @site.status.to_s().capitalize
+              
+      %td#report-list{:width => "75%"}
+        = render :partial => "report_table"
+
 .clearfix
-.report-status
 
-  -if @site.status == "Online"
+#toolbar.box
 
-    = image_tag("deploy_ok.png")
+  %h3
+    TOOLS
 
-  -else
-
-    = image_tag("waiting.png")
-  
-  %h6 
-    Status : 
-    -if @site.status == nil
-      %span
-        Undefined!
-    -else
-      %span.tick
-        =h @site.status.to_s().capitalize
-
-.report-list{:style=>"width:65%;"}
-
-  = render :partial => "report_table"
-  
-.right
-
-  %h4
-    = link_to "Edit Site", edit_project_site_path(@site)
-  
-%hr
-
-%h3
-  TOOLS
-
-%ul.tools-list
-  %li 
-    = link_to "Install Application"
-    
-  %li 
-    = link_to 'ReInstall Application', :controller => "sites", :action => "re_deploy"
-    .notice-text
-      Rebuild the application. It may affect to databases and files.
-      
-  %li 
-    = link_to 'Delete all data', :controller => "sites", :action => "clean_database"
-    .notice-text
-      Clean up site's database. All of data stored in database will be deleted.
-      
-  %li 
-    = link_to 'Uninstall Application'
-    .notice-text
-      Delete this application. All of data will be deleted.
-    
-  %li
-    = link_to 'Remove Site', site_path(@site.id), :method => :delete, :confirm => "Are you sure to delete this site? All of data not only in public folder but also its database too."
+  = render :partial => "tools"

@@ -67,7 +67,7 @@ class SitesController < ApplicationController
         if @site.save
           #Delayed::Job.enqueue(DeployingJob.new(current_user, @project, @site))
 
-          format.html { redirect_to(@site, :notice => 'Site was successfully created.') }
+          format.html { redirect_to @site }
           format.xml  { render :xml => @site, :status => :created, :location => @site }
         else
           format.html { render :action => "new" }

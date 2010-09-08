@@ -27,7 +27,9 @@ p, table, table tr, table tr td{
   border-collapse:collapse; font-size:12px;  text-align:left;
 }
 
+
 /*****************************************************************/
+
 
 #app-title { }
 #about-project tr td { width: 100px;}
@@ -79,20 +81,23 @@ p, table, table tr, table tr td{
 
 #user a { color:FFF;}
 #user a:hover { color:#D3DCF2;}
-/***************************************************/
 
+
+
+
+/****************** table style - 1 ****************/
+
+#list-table{
+  background-color:#E7E7E7;
+  border-spacing:1px;
+  color:#666666;
+}
 #list-table tr th{
   background:none repeat scroll 0 0 #F0F0F0;
   color:#003399;
   text-align:center;
   font-weight:normal;
   padding:8px;
-}
-#list-table{
-  background-color:#E7E7E7;
-  border-spacing:1px;
-  color:#666666;
-  width: 100%;
 }
 #list-table tr td {  
   border-bottom:1px solid #FFFFFF;
@@ -109,8 +114,7 @@ p, table, table tr, table tr td{
 #list-table tr.even {
   background:none repeat scroll 0 0 #F9F9F9;
 }
-#list-table tr:hover td,#list-table tr:hover td a{  /*background:url("gradhover.png") repeat-x scroll 0 0 #D0DAFD;*/
-                                                    background-color:#FFFFDD;  color:#333399;}
+#list-table tr:hover td,#list-table tr:hover td a{ background-color:#FFFFDD;  color:#333399;}
 
 .t_name{
 }
@@ -130,15 +134,53 @@ p, table, table tr, table tr td{
 .t_icon{ width: 40px;}
 .t_stat{ width: 50px;}
 
+/****************** table style - 2 ****************/
 
-/********** Site management **********/
+#toolbar-table{
+	margin: 10px 0px;
+  border-spacing:1px;
+  color:#666666;
+}
+#toolbar-table tr td {  
+  border-bottom:1px solid #FFFFFF;
+  border-top:1px solid #FFFFFF;
+  padding:5px;  height:45px;
+	text-align: center;
+}
+#toolbar-table tr td a{
+	border:1px solid #FBFBFB;
+	cursor:pointer;
+	display:block;
+	white-space:nowrap;
+  color: #43464C;
+}
+#toolbar-table tr td a span{
+	display:block;
+	float:none;
+	height:32px;
+	margin:0 auto;
+	width:32px;
+	
+}
+#toolbar-table tr td:hover{ 
+	border-color:#EEEEEE #CCCCCC #CCCCCC #EEEEEE;
+	border-left:1px solid #EEEEEE;
+	border-style:solid;
+	border-width:1px;
+	text-decoration:none;
+}
+#toolbar-table tr td:hover a:hover{
+	color:#0B55C4;
+}
+
+/***************** Thumbnail View *****************/
+
 .thumbnail {
-  border:1px solid #000000;
+	background-color: #F9F9F9;
+  border:1px solid #EEE;
   height:120px;
-  margin:5px 0;
+  margin:10px 0;
   padding:15px;
-  position:relative;
-  display: block;
 }
 .thumbnail-image{
   margin: 0 15px 0 0;
@@ -146,13 +188,34 @@ p, table, table tr, table tr td{
   width: 80px;
   border:1px solid black; }
 
-.detail h2{ margin-bottom: 0px; }
+.thumbnail-detail{ 
+	float: left; 
+	overflow:hidden;
+	width:77%;
+}
 
-.detail{ float: left; }
+.thumbnail-detail h2 { margin-bottom: 0px; }
 
-.status { width: 100%; }
+.thumbnail-setting{ 
+	float: right;
+	margin: 10px 0 0 0;
+}
 
-.setting{ float: right; }
+.thumbnail-status {
+	text-align: center;
+}
+.thumbnail-status-success  {
+  background:none repeat scroll 0 0 #E6EFC2;
+  border-color:#C6D880;
+  color:#264409;
+}
+.thumbnail-status-error {
+  background:none repeat scroll 0 0 #FBE3E4;
+  border-color:#FBC2C4;
+  color:#8A1F11;
+}
+
+/***************************************************/
 
 #user{ float: right; text-align: right; margin-top: 10px}
 
@@ -184,17 +247,17 @@ p, table, table tr, table tr td{
   padding:0.8em;
 }
 
-.notice-text {
+.note {
   color:#b7bcc7;
   font-size: 12px;
 }
 
-.left{ float: left;}
+.left{float: left;}
 .right{float:right;}
 
 .box {
-	background:none repeat scroll 0 0 #F2F2F2;
-	border:1px solid #DDDDDD;
+	background:none repeat scroll 0 0 #F9F9F9;
+	border:1px solid #EEE;
 	margin-bottom:20px;
 	padding:15px;
 }
@@ -209,31 +272,35 @@ p, table, table tr, table tr td{
   float: left;
   width: 450px;
 }
-.report-status{
-	float: left;
-	display:block;
-	text-align: center;
-	width: 250px;
-	
+
+
+/*************** Site Infomation ***************/
+table#report{
 }
-.tools-list li{
-	overflow: hidden;
-	float: left;
-	list-style: none;
-	padding: 5px;
-	width: 17%;
-	height: 100px;
-	background-color: #eee;
-	margin-left:15px;
+table#report tbody tr td{
+	vertical-align:top;
 }
-.tools-list li:hover{
-	background-color: #eeefff;
+table#report thead tr th{
+	text-align:center;
 }
 
-.thumbnail-status {
-  background:none repeat scroll 0 0 #E6EFC2;
-  border-color:#C6D880;
+#report-status{
 	text-align: center;
-	width
-  color:#264409;
+	width: 250px;
 }
+.tools-list{
+	margin-left: 23px;
+	height:110px;
+}
+.tools-list tr td{
+	width: 150px; height: 100px;
+	border:1px solid #EEE;
+	padding: 10px;
+	overflow: hidden;	
+	text-align:center; float:left;
+}
+.tools-list tr td:hover{
+	background-color: #F4F4F4;
+}
+
+

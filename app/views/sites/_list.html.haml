@@ -1,9 +1,8 @@
--#manage-site-list
-.grid_12
-  %h4
-    Site List
-  %p
-    Sites available :
-    =h @sites.count
+.grid_12#toolbar
+  =render :partial => "toolbar"
+.clearfix
+#thumbnail-list
+  = render :partial => "thumbnail"
 
-= render :partial => 'detail', :object => "site"
+
+-#= render :partial => 'detail', :object => "site"

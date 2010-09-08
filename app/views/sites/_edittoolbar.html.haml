@@ -1,0 +1,15 @@
+.right
+  %table#toolbar-table
+    %tr
+      %td
+        %a{:href=>"#{edit_project_site_path(@site)}"}
+          %span{:width => "32"}
+            = image_tag "add.png", :size => "32x32"
+          Edit
+      %td
+        %a{:href=>"#{manage_path}"}
+          %span{:width => "32"}
+            = image_tag "edit_profile.png", :size => "32x32"
+          Site Management
+      
+.clearfix

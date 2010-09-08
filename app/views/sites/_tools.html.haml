@@ -1,0 +1,22 @@
+%table.tools-list
+  %tr
+    %td
+      = link_to "Install Application"
+    
+    %td
+      = link_to 'ReInstall Application', :controller => "sites", :action => "re_deploy"
+      .note
+        Rebuild the application. It may affect to databases and files.
+      
+    %td 
+      = link_to 'Delete all data', :controller => "sites", :action => "clean_database"
+      .note
+        Clean up site's database. All of data stored in database will be deleted.
+      
+    %td 
+      = link_to 'Uninstall Application'
+      .note
+        Delete this application. All of data will be deleted.
+    
+    %td
+      = link_to 'Remove Site', site_path(@site.id), :method => :delete, :confirm => "Are you sure to delete this site? All of data not only in public folder but also its database too."

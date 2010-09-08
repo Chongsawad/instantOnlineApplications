@@ -1,0 +1,28 @@
+.left
+  %table#toolbar-table
+    %tr
+      %td
+        %a{:href=>"#{sites_path}"}
+          %span
+            = image_tag "thumbnail_view.png", :size => "32x32"
+          Thumbnail View
+      %td
+        %a{:href=>"#{sites_path}"}
+          %span
+            = image_tag "table_view.png", :size => "32x32"
+          List View
+.right
+  %table#toolbar-table
+    %tr
+      %td
+        %a{:href=>"#{projects_path}"}
+          %span{:width => "32"}
+            = image_tag "add.png", :size => "32x32"
+          Create Site
+      %td
+        %a{:href=>"#{edit_user_registration_path}"}
+          %span{:width => "32"}
+            = image_tag "edit_profile.png", :size => "32x32"
+          Admin profile
+      
+.clearfix
