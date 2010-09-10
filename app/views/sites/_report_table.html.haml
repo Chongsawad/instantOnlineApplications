@@ -1,14 +1,11 @@
 %table#list-table{:width=>"100%"}
-  %thead
   %tbody
     %tr.odd
-    
-      %td
+      %td{:width => "20%"}
         Site name
         
       %td
         = link_to @site.name.to_s().capitalize + ".project.com", "http://" + @site.name.to_s().capitalize + ".project.com"
-        
         .note
           If you would like to change your domain, Please contact our staff
           
@@ -26,8 +23,14 @@
         
       %td
         = link_to @site.project.name, project_path(@site.project)
-      
+    
     %tr.even
+      %td
+        Project Version
+      %td
+        = @site.project.version
+        
+    %tr.odd
     
       %td
         Project Version
@@ -35,7 +38,7 @@
       %td
         (Undefined)
         
-    %tr.odd
+    %tr.even
     
       %td
         Site administrator

@@ -2,11 +2,18 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :sites
   map.devise_for :users , :has_many => "sites"
   map.resources :projects , :has_many => "sites"
+  
   map.connect 'sites/:id/reinstall',:controller => "sites", :action => 're_deploy'
   map.connect 'sites/:id/clean',:controller => "sites", :action => 'clean_database'
+  map.connect 'sites/:id/uninstall',:controller => "sites", :action => 'uninstall'
+  
+  map.deploy 'sites/:id/deploy', :controller => "sites", :action => 'deploy'
+  map.re_deploy 'sites/:id/re_deploy', :controller => "sites", :action => 're_deploy'
+  
   map.manage 'manage', :controller => "sites", :action => 'index'
   map.support 'support', :controller => 'pages', :action => 'support'
   map.contact 'contact', :controller => 'pages', :action => 'contact'
+  
   # The priority is based upon order of creation: first created -> highest priority.
 
   # Sample of regular route:
@@ -46,6 +53,7 @@ ActionController::Routing::Routes.draw do |map|
   # Install the default routes as the lowest priority.
   # Note: These default routes make all actions in every controller accessible via GET requests. You should
   # consider removing or commenting them out if you're using named routes and resources.
+  
   map.connect ':controller/:action/:id'
   map.connect ':controller/:action/:id.:format'
   map.root :controller => "home"

@@ -55,10 +55,9 @@ class SitesController < ApplicationController
     # @site.path = "/home/inice/InstantSOA/deploy_cap/inice/#{current_user.id}_#{params[:site][:name]}"
     
     @site.path = "/home/inice/users/#{current_user.id}/#{current_user.id}_#{params[:site][:name]}"
-    @site.status = "Deploying!"
+    @site.status = "Promt for Install"
     @site.user = current_user
     
-
     respond_to do |format|
       
       if Site.find_by_name(@site.name) != nil
@@ -77,40 +76,48 @@ class SitesController < ApplicationController
     end
   end
   
+  def deploy
+    
+    @site = Site.find(params[:id])
+    @project = Project.find(@site.project_id)
+    @site.user = current_user
+    @site.status = "Deploying Process"
+    
+    
+    
+    if @site.save
+      
+      render :template => "/sites/deploy"
+      
+      @site.deploy_on_background(current_user,@project,@site)
+      
+    else
+      render :action => "index"
+    end
+  end
+    
   def re_deploy
     @site = Site.find(params[:id])
 
-    if @site.path     
+    if @site.path
       @site.status = "Re-deploying!"
-      @user = @site.user
-      @project = @site.project
-      
-      @site.re_deploy
-      #deploy(@user, @project, @site)
-      
-      #Delayed::Job.enqueue(DeployingJob.new(@user, @project, @site))
-
-      respond_to do |format|
-        if @site.save
-          format.html { redirect_to(@site, :notice => "Re-deploying job has already been enqueued. Wait for 5-10 minutes for running process.") }
-          format.xml  { head :ok }
-        else
-          format.html { render :action => "show" }
-          format.xml  { render :xml => @site.errors, :status => :unprocessable_entity }
-        end
+      if @site.save
+        render :template => "/sites/re_deploy"
+        #@site.deploy_on_background(current_user,@site.project,@site.user)
+      else 
+        redirect_to(@site, :notice => "ERROR FILE PATH. Please contact administrator.")
       end
 
     else
-      redirect_to(@site, :notice => "ERROR FILE PATH. Please contact administrator.")
-    end
+      redirect_to(@site, :notice => "Database Error. Please contact administrator.")
 
+    end
   end
 
   # PUT /sites/1
   # PUT /sites/1.xml
   def update
     @site = Site.find(params[:id])
-
     respond_to do |format|
       if @site.update_attributes(params[:site])
         format.html { redirect_to(@site, :notice => 'Site was successfully updated.') }
@@ -121,53 +128,27 @@ class SitesController < ApplicationController
       end
     end
   end
-
-  def site_destroy(site)
-    begin
-      puts "\n\n\n----------- SITE_DESTROYING -----------\n\n\n"
-      puts "PATH = #{site.path}"
-      puts "APPNAME=#{site.user_id}_#{site.name}"
-
-      if system("sh -c 'cd #{site.path}/current/; cap APPNAME=#{site.user_id}_#{site.name} database:drop;'")
-        puts "\n----------- Delete Database : #{site.user_id}_#{site.name} -----------\n"
-
-        if system("sh -c 'test -e #{RAILS_ROOT}/site_info/#{current_user.id}_#{site.name}.*'")
-          system("sh -c 'rm -Rf #{RAILS_ROOT}/site_info/#{current_user.id}_#{site.name}.*'")
-          puts "\n----------- Delete #{RAILS_ROOT}/site_info/#{current_user.id}_#{site.name} -----------\n"
-
-          if system("sh -c 'test -e #{site.path}/'")
-            system("sh -c 'rm -Rf #{site.path}'")
-            puts "\n----------- Delete #{site.path}   -----------\n"
-            return true
-          else
-            puts "\n----------- Cannot delete application root path --> #{site.path}   -----------\n"
-            flash[:warning] = "Cannot delete application root path --> #{site.path}"
-            return false
-          end
-
-        else
-          puts "\n----------- Cannot delete sub-domain the confinguration file --> #{RAILS_ROOT}/site_info/#{current_user.id}_#{site.name} -----------\n"
-          return false
-        end
-
-      else  
-        puts "\n----------- Cannot delete Database : #{site.user_id}_#{site.name} -----------\n"
-        return false
-      end
-
-    rescue
-      puts "\n\n\n----------- DESTROY ERROR!   -----------\n\n\n"
-      return false
-    end
-
-  end
   
   # CLEAN /sites/:id/clean
   def clean_database
-
-    respond_to do |format|
-      format.html { redirect_to(sites_url, :notice => "Database was successfully cleaned.") }
-      format.xml  { head :ok }
+    @site = Site.find(params[:id])
+    @site.clean_database(@site)
+    @site.status = "Cleaning database"
+    if @site.save
+      render :template => "sites/clean_database"
+    else
+      redirect_to(@site, :notice => "Database Error. Please contact administrator.")
+    end
+  end
+  
+  def uninstall
+    @site = Site.find(params[:id])
+    @site.status = "Uninstall Application"
+    if @site.save
+      @site.uninstall(@site)
+      render :template => "sites/uninstall"
+    else
+      redirect_to(@site, :warning => "Uninstall site incomplete!. Please contact administrator.")
     end
   end
 
@@ -176,11 +157,10 @@ class SitesController < ApplicationController
   def destroy
     @site = Site.find(params[:id])
     
-    if site_destroy(@site)
+    if @site.uninstall(@site)
       puts "\n\n\n----------- DESTROYED -----------\n\n\n"
       puts "SITE = #{@site.name}"
-      @site.destroy
-
+      
       respond_to do |format|
         format.html { redirect_to(sites_url, :notice => "Your site was successfully deleted.") }
         format.xml  { head :ok }

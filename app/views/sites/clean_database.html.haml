@@ -1,0 +1,11 @@
+- content_for :header do
+  Database Cleaning
+.grid_12
+  %h3
+    Accessing Database! 
+  .box
+    Your site will be disabled for 1 - 2 minutes.
+    
+  = link_to "Site Management", sites_path
+  |
+  = link_to "Go to your site", "http://" + @site.name + ".project.com"

@@ -1,7 +1,7 @@
 %table.tools-list
   %tr
     %td
-      = link_to "Install Application"
+      = link_to "Install Application", :controller => "sites", :action => "deploy"
     
     %td
       = link_to 'ReInstall Application', :controller => "sites", :action => "re_deploy"
@@ -14,7 +14,7 @@
         Clean up site's database. All of data stored in database will be deleted.
       
     %td 
-      = link_to 'Uninstall Application'
+      = link_to 'Uninstall Application', :controller => "sites", :action => "uninstall"
       .note
         Delete this application. All of data will be deleted.
     

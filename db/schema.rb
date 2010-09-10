@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100623052035) do
+ActiveRecord::Schema.define(:version => 20100910031938) do
 
   create_table "delayed_jobs", :force => true do |t|
     t.integer  "priority",   :default => 0
@@ -40,6 +40,7 @@ ActiveRecord::Schema.define(:version => 20100623052035) do
     t.string   "screenshot_content_type"
     t.integer  "screenshot_file_size"
     t.datetime "screenshot_updated_at"
+    t.string   "version"
   end
 
   create_table "sites", :force => true do |t|

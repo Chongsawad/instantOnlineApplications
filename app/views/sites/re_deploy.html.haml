@@ -1,0 +1,11 @@
+- content_for :header do
+  Deploying Site
+.grid_12
+  %h3
+    RE-INSTALLING PROCESS…
+  .box
+    Deploying process will take about 5 - 10 minutes.
+    
+  = link_to "Site Management", sites_path
+  |
+  = link_to "Go to your site", "http://" + @site.name + ".project.com"
