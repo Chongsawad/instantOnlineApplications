@@ -43,6 +43,11 @@
         %table#about-project
           %tr
             %td
+              Version
+            %td
+              = @project.version
+          %tr
+            %td
               Demo
             %td
               = link_to @project.url_demo;

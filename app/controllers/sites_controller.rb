@@ -103,7 +103,7 @@ class SitesController < ApplicationController
       @site.status = "Re-deploying!"
       if @site.save
         render :template => "/sites/re_deploy"
-        #@site.deploy_on_background(current_user,@site.project,@site.user)
+        @site.deploy_on_background(current_user,@site.project,@site)
       else 
         redirect_to(@site, :notice => "ERROR FILE PATH. Please contact administrator.")
       end

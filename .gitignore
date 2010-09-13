@@ -13,3 +13,5 @@
 /public/themes/*
 /site_info/*
 /cap_files/*
+/nbproject/*
+nbproject/

@@ -11,7 +11,7 @@ class Site < ActiveRecord::Base
     
   end
 
-    def uninstall(site)
+  def uninstall(site)
     puts "\n\n\n----------- SITE_DESTROYING -----------\n\n\n"
     puts "PATH = #{site.path}"
     puts "APPNAME=#{site.user_id}_#{site.name}"

@@ -27,7 +27,7 @@ class DeployingJob
 
   server {
     listen		80;
-    server_name 	#{@site_name}.local;
+    server_name 	#{@site_name}.project.com;
     root  		#{@path}/current/public;
     passenger_enabled 	on;
   }
