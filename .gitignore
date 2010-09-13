@@ -13,3 +13,8 @@
 /public/themes/*
 /site_info/*
 /cap_files/*
+app/views/sites/_detail.html.haml
+app/views/sites/edit.html.erb
+app/views/sites/manage.html.haml
+app/views/sites/old_edit.html.erb
+

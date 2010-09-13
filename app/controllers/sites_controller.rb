@@ -144,8 +144,8 @@ class SitesController < ApplicationController
   def uninstall
     @site = Site.find(params[:id])
     @site.status = "Uninstall Application"
-    if @site.save
-      @site.uninstall(@site)
+    if @site.uninstall(@site)
+      @site.save
       render :template => "sites/uninstall"
     else
       redirect_to(@site, :warning => "Uninstall site incomplete!. Please contact administrator.")
