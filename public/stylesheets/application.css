@@ -24,7 +24,7 @@ p.navigator { color: #0373bc; font-size: 14px; }
 a {color: #000; text-decoration:none; font-weight:normal; }
 p, table, table tr, table tr td{
   font-family:"Lucida Sans Unicode","Lucida Grande",Sans-Serif;
-  border-collapse:collapse; font-size:12px;  text-align:left;
+  border-collapse:collapse; font-size:14px;  text-align:left;
 }
 
 
@@ -75,9 +75,19 @@ p, table, table tr, table tr td{
   margin: 0 10px 0;
 }
 .product p { color:#60686b;  font-size: 12px;}
+
+/****************** Create site FORM ****************/
+
 #site-form { float: left; position: absolute;}
-#tabs{ float: right; }
-#tabs-1, #tabs-2, #tabs-3{ min-height: 300px; }
+#site-tab{ float: right; }
+#site-form, #site-tab{
+	height:500px;
+}
+#site-hint {
+	margin: -42px 0 15px 330px;
+	font-size: 18px;
+}
+#tabs-1, #tabs-2, #tabs-3{ min-height: 300px;}
 
 #user a { color:FFF;}
 #user a:hover { color:#D3DCF2;}
@@ -91,6 +101,7 @@ p, table, table tr, table tr td{
   background-color:#E7E7E7;
   border-spacing:1px;
   color:#666666;
+	width:100%;
 }
 #list-table tr th{
   background:none repeat scroll 0 0 #F0F0F0;
@@ -128,7 +139,6 @@ p, table, table tr, table tr td{
   color: green;
 }
 .t_icon, .t_stat{
-  vertical-align: middle;
   text-align: center;
 }
 .t_icon{ width: 40px;}
@@ -147,14 +157,14 @@ p, table, table tr, table tr td{
   padding:5px;  height:45px;
 	text-align: center;
 }
-#toolbar-table tr td a{
+#toolbar-table tr td a,#select_view{
 	border:1px solid #FBFBFB;
 	cursor:pointer;
 	display:block;
 	white-space:nowrap;
   color: #43464C;
 }
-#toolbar-table tr td a span{
+#toolbar-table tr td a span,#toolbar-table tr td #select_view span{
 	display:block;
 	float:none;
 	height:32px;
@@ -273,6 +283,7 @@ p, table, table tr, table tr td{
   width: 450px;
 }
 
+#validate_name{ padding:2px;}
 
 /*************** Site Infomation ***************/
 table#report{

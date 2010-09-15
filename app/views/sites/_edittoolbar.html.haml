@@ -1,10 +1,38 @@
+.left
+  %table#toolbar-table
+    %tr
+      %td
+        %a{:href=>"#{deploy_path(@site)}"}
+          %span{:width => "32"}
+            = image_tag "install.png", :size => "32x32"
+          Install
+      %td
+        %a{:href=>"#{re_deploy_path(@site)}"}
+          %span{:width => "32"}
+            = image_tag "reinstall.png", :size => "32x32"
+          Reinstall
+      %td
+        %a{:href=>"#{clean_path(@site)}"}
+          %span{:width => "32"}
+            = image_tag "clean_db.png", :size => "32x32"
+          Clean Database
+      %td
+        %a{:href=>"#{uninstall_path(@site)}"}
+          %span{:width => "32"}
+            = image_tag "uninstall.png", :size => "32x32"
+          Uninstall
+      %td
+        %span{:width => "32"}
+          = link_to (image_tag "remove.png", :size => "32x32"), site_path(@site.id), :method => :delete, :confirm => "Are you sure to delete this site? All of data not only in public folder but also its database too."
+        = link_to 'Remove Site', site_path(@site.id), :method => :delete, :confirm => "Are you sure to delete this site? All of data not only in public folder but also its database too."
+
 .right
   %table#toolbar-table
     %tr
       %td
         %a{:href=>"#{edit_project_site_path(@site)}"}
           %span{:width => "32"}
-            = image_tag "add.png", :size => "32x32"
+            = image_tag "edit.png", :size => "32x32"
           Edit
       %td
         %a{:href=>"#{manage_path}"}

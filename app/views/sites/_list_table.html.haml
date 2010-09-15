@@ -1,0 +1,33 @@
+.grid_12
+  %table#list-table
+    %thead
+      %tr
+        %th
+          No.
+        %th{:width=>"140px"}
+          Sitename
+        %th
+          Enable
+        %th
+          Project
+        %th
+          Status
+        %th
+          Last Updated
+        %th
+          Site ID
+        %th
+          Edit
+
+    %tbody
+    - i = 1
+    - for site in @sites
+      - if i % 2 == 0
+        %tr.even
+          = render :partial => "row", :locals => { :site => site, :i => i }
+
+      - else
+        %tr.odd
+          = render :partial => "row", :locals => { :site => site, :i => i }
+        
+      - i = i + 1

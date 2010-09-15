@@ -2,15 +2,25 @@
   %table#toolbar-table
     %tr
       %td
-        %a{:href=>"#{sites_path}"}
+        #select_view
           %span
-            = image_tag "thumbnail_view.png", :size => "32x32"
+            = image_tag "thumbnail_view.png", :size => "32x32", :onclick => "view_thumbnail()"
+            :javascript
+              function view_thumbnail(){
+                document.getElementById('thumbnail-list2').setAttribute('style','display: none;');
+                document.getElementById('thumbnail-list1').setAttribute('style','display: normal;');
+              }
           Thumbnail View
       %td
-        %a{:href=>"#{sites_path}"}
+        #select_view
           %span
-            = image_tag "table_view.png", :size => "32x32"
+            = image_tag "table_view.png", :size => "32x32", :onclick => "view_list()"
           List View
+          :javascript
+            function view_list(){
+              document.getElementById('thumbnail-list1').setAttribute('style','display: none;');
+              document.getElementById('thumbnail-list2').setAttribute('style','display: normal;');
+            }
 .right
   %table#toolbar-table
     %tr

@@ -3,17 +3,16 @@ ActionController::Routing::Routes.draw do |map|
   map.devise_for :users , :has_many => "sites"
   map.resources :projects , :has_many => "sites"
   
-  map.connect 'sites/:id/reinstall',:controller => "sites", :action => 're_deploy'
-  map.connect 'sites/:id/clean',:controller => "sites", :action => 'clean_database'
-  map.connect 'sites/:id/uninstall',:controller => "sites", :action => 'uninstall'
-  
   map.deploy 'sites/:id/deploy', :controller => "sites", :action => 'deploy'
   map.re_deploy 'sites/:id/re_deploy', :controller => "sites", :action => 're_deploy'
+  map.clean 'sites/:id/clean',:controller => "sites", :action => 'clean_database'
+  map.uninstall 'sites/:id/uninstall',:controller => "sites", :action => 'uninstall'
   
   map.manage 'manage', :controller => "sites", :action => 'index'
   map.support 'support', :controller => 'pages', :action => 'support'
   map.contact 'contact', :controller => 'pages', :action => 'contact'
   
+  map.connet 'sites/:id/download/log', :controller => "sites", :action => 'get_log'
   # The priority is based upon order of creation: first created -> highest priority.
 
   # Sample of regular route:

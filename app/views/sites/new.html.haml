@@ -1,23 +1,16 @@
 - content_for :header do
-  Online Store
+  Create your Site
 
-#app-wrapper
-  #app-title.grid_12
-    %h3
-      =h @project.name
-    %p
-      =h @project.content
-  .clearfix
+#site-tab.grid_4
+  = render :partial => "tabs"
 
-  #tabs.grid_8
-    = render :partial => "tabs"
+#site-form.grid_8
+  %ul
+    %li
+      %a{:href=>"#form"}
+        Form
+  #form
+    = render :partial => "form"
+    
 
-  #site-form.grid_4
-    %ul
-      %li
-        %a{:href=>"#form"}
-          Form
-    #form
-      = render :partial => "form"
-
-  .clearfix
+.clearfix

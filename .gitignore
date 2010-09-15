@@ -13,8 +13,13 @@
 /public/themes/*
 /site_info/*
 /cap_files/*
+<<<<<<< HEAD
 app/views/sites/_detail.html.haml
 app/views/sites/edit.html.erb
 app/views/sites/manage.html.haml
 app/views/sites/old_edit.html.erb
 
+=======
+/nbproject/*
+nbproject/
+>>>>>>> e4a1fbf13342ae29b5fef2d66bdaaec31f2c7207

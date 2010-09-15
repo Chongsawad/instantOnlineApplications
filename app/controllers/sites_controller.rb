@@ -57,20 +57,26 @@ class SitesController < ApplicationController
     @site.path = "/home/inice/users/#{current_user.id}/#{current_user.id}_#{params[:site][:name]}"
     @site.status = "Promt for Install"
     @site.user = current_user
-    
     respond_to do |format|
       
       if Site.find_by_name(@site.name) != nil
-          format.html { redirect_to(@site, :error => 'Cannot create site with name.') }
-      else    
-        if @site.save
-          #Delayed::Job.enqueue(DeployingJob.new(current_user, @project, @site))
+          flash[:error] = 'Site name is exist.'
+          format.html { redirect_to(@site) }
+      else
+        if @site.validate_site_name(@site.name) 
+          if @site.save
+            #Delayed::Job.enqueue(DeployingJob.new(current_user, @project, @site))
 
-          format.html { redirect_to @site }
-          format.xml  { render :xml => @site, :status => :created, :location => @site }
+            format.html { redirect_to @site }
+            format.xml  { render :xml => @site, :status => :created, :location => @site }
+          else
+            format.html { render :action => "new" }
+            format.xml  { render :xml => @site.errors, :status => :unprocessable_entity }
+          end
         else
-          format.html { render :action => "new" }
-          format.xml  { render :xml => @site.errors, :status => :unprocessable_entity }
+          flash[:warning] = 'Site name is incorrect'
+          format.html { render :action => "new"}
+          format.xml  { render :xml => @site.errors, :status => :'Site name is incorrect' }
         end
       end
     end
@@ -103,7 +109,7 @@ class SitesController < ApplicationController
       @site.status = "Re-deploying!"
       if @site.save
         render :template => "/sites/re_deploy"
-        #@site.deploy_on_background(current_user,@site.project,@site.user)
+        @site.deploy_on_background(current_user,@site.project,@site)
       else 
         redirect_to(@site, :notice => "ERROR FILE PATH. Please contact administrator.")
       end
@@ -167,6 +173,13 @@ class SitesController < ApplicationController
       end
     else
       redirect_to(@site, :warning => "Remove site incomplete!. Please contact administrator.")
+    end
+  end
+  
+  def get_log
+    @site = Site.find(params[:id])
+    respond_to do |format|
+      format.text { send_file '../../log/production.log', :type => 'text/html'}
     end
   end
 end

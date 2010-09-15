@@ -48,9 +48,9 @@
             -if flash[:alert]
               .notice
                 = flash[:alert]  
-            -if flash[:warning]
+            -if flash[:warning] 
               .error
-                = flash[:warning]
+                = flash[:warning] 
             -#= render :partial => "shared/flash"
 
           .clearfix
@@ -59,6 +59,6 @@
  
     .clearfix
 
-    .footer
-      = render :partial => "shared/footer"
+  .footer
+    -#= render :partial => "shared/footer"
 

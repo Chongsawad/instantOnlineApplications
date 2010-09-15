@@ -1,8 +1,12 @@
 .grid_12#toolbar
-  =render :partial => "toolbar"
+  = render :partial => "toolbar"
+  
 .clearfix
-#thumbnail-list
+
+#thumbnail-list1{:style =>"display: normal;"}
+
   = render :partial => "thumbnail"
+  
+#thumbnail-list2{:style =>"display: none;"}
 
-
--#= render :partial => 'detail', :object => "site"
+  = render :partial => "list_table"

@@ -1,0 +1,31 @@
+%td.t_icon
+  =h i
+
+%td.t_name
+  %a{site_path(site)}
+    =link_to site.name+ ".project.com", site
+
+%td.t_icon
+  %a{:href => "#site"}
+    =image_tag("tick.png",:size => "12x12")
+
+%td.t_type
+  =h site.project.name
+
+%td.t_stat
+  -if site.status == nil
+    %span
+      Undefined!
+  -else
+    %span.tick
+      =h site.status.to_s().capitalize
+
+%td.t_date
+  =h site.updated_at.ctime
+
+%td.t_stat
+  =h site.id
+
+%td.t_icon
+  %a{:href => site_url(site) }
+    =image_tag("edit.png",:size => "16x16")

@@ -1,6 +1,17 @@
 class Site < ActiveRecord::Base
   belongs_to :project
   belongs_to :user
+  validates_presence_of :name
+  
+  def validate_site_name(string)
+    if string =~ /^([0-9a-zA-Z_]{4,12})$/
+      puts "Validate"
+      return true
+    else
+      puts "Not validate"
+      return false
+    end
+  end
   
   def deploy_on_background(user, project, site)
     puts "\n\n\n\n\n\n Deploying!…Enqueue to Delayed_job \n\n\n\n\n\n"
@@ -11,7 +22,7 @@ class Site < ActiveRecord::Base
     
   end
 
-    def uninstall(site)
+  def uninstall(site)
     puts "\n\n\n----------- SITE_DESTROYING -----------\n\n\n"
     puts "PATH = #{site.path}"
     puts "APPNAME=#{site.user_id}_#{site.name}"
