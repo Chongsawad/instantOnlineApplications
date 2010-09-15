@@ -1,12 +1,16 @@
 - content_for :header do
   Deploying Site
+  
+#toolbar.grid_12
+  = render :partial => "actiontoolbar"
+
 .grid_12
-  %h3
-    INSTALLING PROCESS…
-  .box
-    Deploying process will take about 5 - 10 minutes.
-    
-  = link_to "Site Management", sites_path
-  |
-  = link_to "Go to your site", "http://" + @site.name + ".project.com"
+  .box#deploy
+    = image_tag("waiting_clock.png",:size=>"128x128")
+    %div
+      Deploying process will take about 5 - 10 minutes.
+  #deploy  
+    = link_to "Site Management", sites_path
+    |
+    = link_to "Go to your site", "http://" + @site.name + ".project.com"
   

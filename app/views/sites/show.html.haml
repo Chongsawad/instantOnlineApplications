@@ -3,5 +3,11 @@
 .grid_12  
   = render :partial => "edittoolbar"
 
-.grid_12
-  = render :partial => "report"
+#report-form.grid_12
+  %ul
+    %li
+      %a{:href=>"#report"}
+        Site :
+        =@site.name
+  #report
+    = render :partial => "report"

@@ -33,14 +33,6 @@
     %tr.odd
     
       %td
-        Project Version
-        
-      %td
-        (Undefined)
-        
-    %tr.even
-    
-      %td
         Site administrator
         
       %td 
@@ -48,12 +40,12 @@
         
         .note
           logging by using username: <strong>admin </strong> and password: <strong>admin</strong>
-    %tr.odd
+    %tr.even
       %td
         Size
       %td
         =h `du -sh .`.match(/[0-9]*.[0-9]*M/)[0] + " / unlimited"
-    %tr.even
+    %tr.odd
       %td
       %td
         =link_to "Download Log file", :controller => "sites", :action => "get_log"

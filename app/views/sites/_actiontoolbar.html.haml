@@ -1,0 +1,21 @@
+.left
+  %h3
+    INSTALLING PROCESS…
+.right
+  %table#toolbar-table
+    %tr
+      %td
+        %a{:href=>"#{site_path(@site)}"}
+          %span{:width => "32"}
+            = image_tag "editTools.png", :size => "32x32"
+          Site Tools
+      %td
+        %a{:href=>"#{edit_project_site_path(@site)}"}
+          %span{:width => "32"}
+            = image_tag "edit.png", :size => "32x32"
+          Edit Site
+      %td
+        %a{:href=>"#{manage_path}"}
+          %span{:width => "32"}
+            = image_tag "edit_profile.png", :size => "32x32"
+          Site Management

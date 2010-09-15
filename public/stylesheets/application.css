@@ -24,7 +24,7 @@ p.navigator { color: #0373bc; font-size: 14px; }
 a {color: #000; text-decoration:none; font-weight:normal; }
 p, table, table tr, table tr td{
   font-family:"Lucida Sans Unicode","Lucida Grande",Sans-Serif;
-  border-collapse:collapse; font-size:14px;  text-align:left;
+  border-collapse:collapse; font-size:12px;  text-align:left;
 }
 
 
@@ -283,7 +283,10 @@ p, table, table tr, table tr td{
   width: 450px;
 }
 
-#validate_name{ padding:2px;}
+#validate_name{ 
+	padding:2px;
+	text-align:center;
+}
 
 /*************** Site Infomation ***************/
 table#report{
@@ -314,4 +317,17 @@ table#report thead tr th{
 	background-color: #F4F4F4;
 }
 
+#new-site-notice{
+	width:720px;
+}
+
+#site-shoutbox{
+	margin:40px 50px;
+	padding:5px;
+	text-align:center;
+}
+#deploy{
+	text-align:center;
+	
+}
 

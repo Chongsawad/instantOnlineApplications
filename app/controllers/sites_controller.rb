@@ -179,7 +179,11 @@ class SitesController < ApplicationController
   def get_log
     @site = Site.find(params[:id])
     respond_to do |format|
-      format.text { send_file 'log/production.log', :type => 'text/html'}
+      if File.exist?("log/production.log")
+        format.text { send_file "log/production.log", :type => 'text/html'}
+      else
+        redirect_to(@site, :warning => "Cannot access log file.")
+      end
     end
   end
 end

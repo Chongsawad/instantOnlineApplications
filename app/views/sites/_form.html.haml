@@ -5,21 +5,34 @@
     
     = form.input :name, :label => "Site name",:input_html => {:onKeyUp => "validate(document.getElementById('site_name').value)", :size => "20"}
     #site-hint .project.com
-    #validate_name.box{:style => "margin:0 44% 0 25%;"}
+    #validate_name.box{:style => "margin:0 44% 0 25%;background:none repeat scroll 0 0 #F9F9F9;"}
       :javascript
         function validate(value) {
           var obj = document.getElementById('validate_name');
           
           var rex = /^([0-9a-zA-Z_]{4,12})$/;
-          if(rex.test(value)){obj.innerHTML="OK.";}
-          else{obj.innerHTML="Incorrect";}
-          if(value==""){obj.innerHTML="Check domain name"}
+          if(rex.test(value)){
+            obj.innerHTML="OK.";
+            document.getElementById('validate_name').style.backgroundColor = "#E6EFC2";
+            document.getElementById('validate_name').style.color = "#529214";
+          }
+          else{
+            obj.innerHTML="Incorrect";
+            document.getElementById('validate_name').style.backgroundColor = "#FFF6BF";
+            document.getElementById('validate_name').style.color = "#000";
+          }
+          if(value==""){
+            document.getElementById('validate_name').style.backgroundColor = "#F9F9F9";
+            document.getElementById('validate_name').style.color = "#000";
+            obj.innerHTML="Check domain name";      
+                  
+          }
         }
       Check domain name
     #validate_help{:style => "margin:10px 0 20px 25%;"}
       Your site name can only contain letters a-z A-Z or numbers 0-9.
       
-    = form.input :description, :as => :text, :label => "Site info", :input_html => { :size => "5x5" }, :hint => "Type about your website"
+    = form.input :description, :as => :text, :label => "Site description", :input_html => { :size => "5x5" }, :hint => "Type about your website"
 
     = form.input :project_id, :as => :hidden
     

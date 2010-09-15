@@ -10,21 +10,26 @@
   %tbody
     %tr
       %td#report-status
-        -if @site.status == "Online"
-          = image_tag("deploy_ok.png")
-
-        -else
-          = image_tag("waiting.png")
-
-        %h6 
-          Status : 
-          -if @site.status == nil
-            %span
-              Undefined!
-          -else
+        - case @site.status
+        - when "Online"
+          = link_to(image_tag("deploy_ok.png"), "http://" +@site.name + ".project.com")
+          %h5
             %span.tick
               =h @site.status.to_s().capitalize
-              
+        - when "Promt for Install"
+          = link_to image_tag("promt_install.png"),:controller => "sites", :action => "deploy"
+          %h5
+            %span.tick
+              = link_to @site.status.to_s().capitalize,:controller => "sites", :action => "deploy"
+          .success#site-shoutbox
+            = link_to "Waiting for starting install process.",:controller => "sites", :action => "deploy"
+            
+        - when "Deploying process Incomplete!"
+          = image_tag("deploy_error.png")
+        - else
+          = image_tag("waiting.png")
+
+
       %td#report-list{:width => "75%"}
         = render :partial => "report_table"
       

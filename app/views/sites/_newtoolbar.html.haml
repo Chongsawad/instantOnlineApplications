@@ -1,0 +1,17 @@
+%h3
+  Form a site
+.left
+  #new-site-notice
+    %p{:style=>"text-indent:40px;"}
+      Fill the form below to create a site. This site will automatically create sub-domain like "exmaple.project.com". You can only name your site using letters a-z A-Z 0-9 and _ (underscore). After the site was successfully created, you can manage your site from integrated-tool.
+    
+.right
+  %table#toolbar-table
+    %tr
+      %td
+        %a{:href=>"#{projects_path}"}
+          %span{:width => "32"}
+            = image_tag "back.png", :size => "32x32"
+          Back to catolog
+      
+.clearfix
