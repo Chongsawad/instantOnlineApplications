@@ -179,7 +179,7 @@ class SitesController < ApplicationController
   def get_log
     @site = Site.find(params[:id])
     respond_to do |format|
-      format.text { send_file '../../log/production.log', :type => 'text/html'}
+      format.text { send_file 'log/production.log', :type => 'text/html'}
     end
   end
 end
