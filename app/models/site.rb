@@ -21,7 +21,18 @@ class Site < ActiveRecord::Base
   def clean_database(site)
     
   end
-
+  
+  def drop_db(site)
+    puts "\n----------- Drop #{site.name}_production   -----------\n"
+    
+    @app_name = site.user.id.to_s()+'_'+site.name
+    if system("sh -c 'cd #{site.path}/current/; cap APPNAME=#{site.user_id}_#{site.name} database:drop;'")
+      system("sh -c 'cd #{site.path}/; cap deploy USER=#{site.user.id} APPNAME='#{@app_name}'")
+    else
+      puts "\n----------- Cannot Drop #{site.name}_production   -----------\n"
+    
+  end
+  
   def uninstall(site)
     puts "\n\n\n----------- SITE_DESTROYING -----------\n\n\n"
     puts "PATH = #{site.path}"
