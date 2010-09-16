@@ -26,10 +26,13 @@ class Site < ActiveRecord::Base
     puts "\n----------- Drop #{site.name}_production   -----------\n"
     
     @app_name = site.user.id.to_s()+'_'+site.name
-    if system("sh -c 'cd #{site.path}/current/; cap APPNAME=#{site.user_id}_#{site.name} database:drop;'")
+    if system("sh -c 'cd #{site.path}/current/; cap APPNAME='#{site.user.id}_#{site.name}' USER=#{site.user.id} database:drop;'")
       system("sh -c 'cd #{site.path}/; cap deploy USER=#{site.user.id} APPNAME='#{@app_name}'")
     else
-      puts "\n----------- Cannot Drop #{site.name}_production   -----------\n"
+      puts "\n----------- Cannot Drop #{site.user.id}_#{site.name}_production   -----------\n"
+      `cd #{site.path}/current/`
+      `cap APPNAME=#{site.user.id}_#{site.name} database:drop`
+    end
     
   end
   
@@ -37,7 +40,7 @@ class Site < ActiveRecord::Base
     puts "\n\n\n----------- SITE_DESTROYING -----------\n\n\n"
     puts "PATH = #{site.path}"
     puts "APPNAME=#{site.user_id}_#{site.name}"
-    if system("sh -c 'cd #{site.path}/current/; cap APPNAME=#{site.user_id}_#{site.name} database:drop;'")
+    if system("sh -c 'cd #{site.path}/current/; cap USER=#{site.user.id} APPNAME=#{site.user_id}_#{site.name} database:drop;'")
       puts "\n----------- Delete Database : #{site.user_id}_#{site.name} -----------\n"
       if system("sh -c 'test -e #{RAILS_ROOT}/site_info/#{current_user.id}_#{site.name}.*'")
         system("sh -c 'rm -Rf #{RAILS_ROOT}/site_info/#{current_user.id}_#{site.name}.*'")
