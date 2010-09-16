@@ -1,66 +1,70 @@
 .container_12
-  .grid_12
-    .project-gallery
-      #gallery.gallery_wrapper
+  #report-form.grid_12
+    %ul
+      %li
+        %a{:href=>"#report"}
+          =@project.name
+    #report
+      -#= render :partial => "report"
+
+
+      .project-gallery
+        #gallery.gallery_wrapper
         
-        .slideshow-container
-          #loading.loader
+          .slideshow-container
+            #loading.loader
           
-          #slideshow.slideshow
-        #controls.controls 
-      #thumbs.navigation
-        %ul{ :class => "thumbs noscript" }
-          %li
-            %a.thumb{:href => @project.img_path, :title => "Title1"}
-              =image_tag(@project.img_path,:height => "84", :width => "84")
-          %li
-            %a.thumb{:href => @project.img_path, :title => "Title1"}
-              =image_tag(@project.img_path,:height => "84", :width => "84")
-          %li
-            %a.thumb{:href => @project.img_path, :title => "Title1"}
-              =image_tag(@project.img_path,:height => "84", :width => "84")
+            #slideshow.slideshow
+          #controls.controls 
+        #thumbs.navigation
+          %ul{ :class => "thumbs noscript" }
+            %li
+              %a.thumb{:href => @project.img_path, :title => "Title1"}
+                =image_tag(@project.img_path,:height => "84", :width => "84")
+            %li
+              %a.thumb{:href => @project.img_path, :title => "Title1"}
+                =image_tag(@project.img_path,:height => "84", :width => "84")
+            %li
+              %a.thumb{:href => @project.img_path, :title => "Title1"}
+                =image_tag(@project.img_path,:height => "84", :width => "84")
 
 
-    .project-detail
-      
-      .left
-      .project-content
-        %h3
-          =h @project.name
-        = @project.content
-        %hr
-
-        =h @project.detail
-        %hr
-        =h @project.detail
-        =h @project.detail
-        =h @project.detail
-        %hr
-      .right
-        %h3
-          =h @project.name
-        %p
-          Resources
-        %table#about-project
-          %tr
-            %td
-              Version
-            %td
-              = @project.version
-          %tr
-            %td
-              Demo
-            %td
-              = link_to @project.url_demo;
-          %tr
-            %td
-              Official site
-            %td
-              = link_to @project.url_project;
-  .clearfix
-  
-  .grid_12
-    .left
-      = link_to 'Back', projects_path
-    .right
-      = link_to image_tag("button_install.png"), new_project_site_path(@project)
+      .project-detail
+        .project-content
+          .left
+            %h2
+              =h @project.name
+          .right
+            %h4
+              = link_to 'Back', projects_path
+          .clear
+          
+          = @project.content
+          %hr
+          
+          =h @project.detail
+          %hr
+          
+          %h3
+            Lisense
+            
+          %table#about-project
+            %tr
+              %td
+                Version
+              %td
+                = @project.version
+            %tr
+              %td
+                Demo
+              %td
+                = link_to @project.url_demo,@project.url_demo;
+            %tr
+              %td
+                Official site
+              %td
+                = link_to @project.url_project,@project.url_project;
+        .project-content
+          .right
+            = link_to image_tag("button_install.png"), new_project_site_path(@project)
+    .clearfix
