@@ -1,0 +1,66 @@
+%html
+  %head
+    %title Instant Online Applications
+    = stylesheet_link_tag 'reset'
+    = stylesheet_link_tag 'text'
+    = stylesheet_link_tag '960'
+    = stylesheet_link_tag 'application'
+    
+    = formtastic_stylesheet_link_tag
+    
+    = javascript_include_tag "jquery-1.4.2.min"
+    = javascript_include_tag "jquery-ui-1.8.2.custom.min"
+    = javascript_include_tag "jquery.galleriffic"
+    
+    = javascript_include_tag "application"
+
+  %body#application
+    .wrapper
+      .header
+        .container_12
+          .grid_12
+            = render :partial => "shared/login"
+            #nav
+              = render :partial => "shared/nav"
+
+          .clearfix
+
+          .grid_12#title
+            %h1
+              = yield(:header) || "Instant Online Application"
+
+
+      .content
+        .container_12
+          .grid_12
+            -if flash[:notice]
+              .success
+                = flash[:notice]
+            -if flash[:alert]
+              .notice
+                = flash[:alert]  
+            -if flash[:warning] 
+              .error
+                = flash[:warning] 
+
+          .clearfix
+          
+          #toolbar.grid_12
+            = yield(:toolbar)
+          .grid_12
+            .box#deploy
+              = image_tag("waiting_clock.png",:size=>"128x128")
+              %div
+                = yield(:detailProcess) || "Wait for 5-10 minutes for your jobs"
+                
+            #deploy  
+              = link_to "Site Management", sites_path
+              |
+              = link_to "Go to your site", "http://" + @site.name + ".project.com"
+ 
+    .clearfix
+
+  .footer
+    -#= render :partial => "shared/footer"
+
+    

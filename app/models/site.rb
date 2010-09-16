@@ -30,7 +30,7 @@ class Site < ActiveRecord::Base
       system("sh -c 'cd #{site.path}/; cap deploy USER=#{site.user.id} APPNAME='#{@app_name}'")
     else
       puts "\n----------- Cannot Drop #{site.name}_production   -----------\n"
-    
+    end
   end
   
   def uninstall(site)
@@ -41,7 +41,7 @@ class Site < ActiveRecord::Base
       puts "\n----------- Delete Database : #{site.user_id}_#{site.name} -----------\n"
       if system("sh -c 'test -e #{RAILS_ROOT}/site_info/#{current_user.id}_#{site.name}.*'")
         system("sh -c 'rm -Rf #{RAILS_ROOT}/site_info/#{current_user.id}_#{site.name}.*'")
-        puts "\n----------- Delete #{RAILS_ROOT}/site_info/#{current_user.id}_#{site.name} -----------\n"
+        putss "\n----------- Delete #{RAILS_ROOT}/site_info/#{current_user.id}_#{site.name} -----------\n"
         if system("sh -c 'test -e #{site.path}/'")
           system("sh -c 'rm -Rf #{site.path}'")
           puts "\n----------- Delete #{site.path}   -----------\n"

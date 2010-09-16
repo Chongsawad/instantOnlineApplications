@@ -88,6 +88,10 @@ p, table, table tr, table tr td{
 	font-size: 18px;
 }
 #tabs-1, #tabs-2, #tabs-3{ min-height: 300px;}
+#tab-content{
+	padding:4px;
+	text-align: center;
+}
 
 #user a { color:FFF;}
 #user a:hover { color:#D3DCF2;}
@@ -293,6 +297,7 @@ table#report{
 }
 table#report tbody tr td{
 	vertical-align:top;
+	overflow:hidden;
 }
 table#report thead tr th{
 	text-align:center;
@@ -318,7 +323,7 @@ table#report thead tr th{
 }
 
 #new-site-notice{
-	width:720px;
+	width:760px;
 }
 
 #site-shoutbox{

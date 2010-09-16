@@ -1,11 +1,11 @@
 - content_for :header do
   Uninstall Site
-.grid_12
-  %h3
-    Uninstalling PROCESS…
-  .box
-    This process will take about 5 - 10 minutes.
-    
-  = link_to "Site Management", sites_path
-  |
-  = link_to "Go to your site", "http://" + @site.name + ".project.com"
+
+- content_for :leftTitle do
+  UNINSTALLING PROCESS…
+
+- content_for :toolbar do
+  = render :partial => "actiontoolbar"
+
+- content_for :detailProcess do
+  This process will take about 5 - 10 minutes.

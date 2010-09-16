@@ -1,10 +1,27 @@
-- semantic_form_for(@site) do |form|
-  = form.error_messages
-  - form.inputs do
-    = form.input :name, :label => "Site name", :hint => ".project.com", :input_html => { :size => "10", :disabled => true }
-    = form.input :description, :as => :text, :label => "Site info", :input_html => { :size => "5x5" }, :hint => "Type about your website"
+- content_for :header do
+  Site Information
+.grid_12  
+  = render :partial => "edittoolbar"
 
-    = form.input :project_id, :as => :hidden
-    
-  - form.buttons do
-    = form.commit_button :button_html => { :value => "Submit" }
+#report-form.grid_12
+  %ul
+    %li
+      %a{:href=>"#report"}
+        Site :
+        =@site.name
+  #report.grid_8
+    - semantic_form_for(@site) do |form|
+      = form.error_messages
+      - form.inputs do
+        
+        = form.input :name, :label => "Site name", :input_html => { :size => "20", :disabled => true }
+        #site-hint .project.com
+        #validate_help{:style => "margin:10px 0 20px 25%;"}
+          Site name must static name.
+        
+        = form.input :description, :as => :text, :label => "Site info", :input_html => { :size => "5x5" }, :hint => "Type about your website"
+
+        = form.input :project_id, :as => :hidden
+
+      - form.buttons do
+        = form.commit_button :button_html => { :value => "Submit" }

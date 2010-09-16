@@ -89,16 +89,15 @@ class SitesController < ApplicationController
     @site.user = current_user
     @site.status = "Deploying Process"
     
-    
-    
     if @site.save
       
-      render :template => "/sites/deploy"
+      render :layout => "action", :template => "/sites/deploy"
       
       @site.deploy_on_background(current_user,@project,@site)
       
     else
       render :action => "index"
+      
     end
   end
     
@@ -108,7 +107,7 @@ class SitesController < ApplicationController
     if @site.path
       @site.status = "Re-deploying!"
       if @site.save
-        render :template => "/sites/re_deploy"
+       render :layout => "action", :template => "/sites/re_deploy"
         @site.deploy_on_background(current_user,@site.project,@site)
       else 
         redirect_to(@site, :notice => "ERROR FILE PATH. Please contact administrator.")
@@ -141,7 +140,7 @@ class SitesController < ApplicationController
     @site.clean_database(@site)
     @site.status = "Cleaning database"
     if @site.save
-      render :template => "sites/clean_database"
+      render :layout => "action", :template => "/sites/clean_database"
     else
       redirect_to(@site, :notice => "Database Error. Please contact administrator.")
     end
@@ -150,9 +149,10 @@ class SitesController < ApplicationController
   def uninstall
     @site = Site.find(params[:id])
     @site.status = "Uninstall Application"
-    if @site.uninstall(@site)
-      @site.save
-      render :template => "sites/uninstall"
+    
+    if @site.save
+      render :layout => "action", :template => "sites/uninstall"
+      @site.uninstall(@site)
     else
       redirect_to(@site, :warning => "Uninstall site incomplete!. Please contact administrator.")
     end
@@ -178,12 +178,13 @@ class SitesController < ApplicationController
   
   def get_log
     @site = Site.find(params[:id])
-    respond_to do |format|
-      if File.exist?("log/production.log")
+    if File.exist?("log/production.log")
+      respond_to do |format|
         format.text { send_file "log/production.log", :type => 'text/html'}
-      else
-        redirect_to(@site, :warning => "Cannot access log file.")
       end
+    else
+      flash[:warning] = "Cannot Access log file. You have to install the application before view a log file"
+      redirect_to(@site)
     end
   end
 end

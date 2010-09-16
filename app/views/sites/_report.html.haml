@@ -22,7 +22,7 @@
             %span.tick
               = link_to @site.status.to_s().capitalize,:controller => "sites", :action => "deploy"
           .success#site-shoutbox
-            = link_to "Waiting for starting install process.",:controller => "sites", :action => "deploy"
+            = link_to "Waiting for starting install the site.",:controller => "sites", :action => "deploy"
             
         - when "Deploying process Incomplete!"
           = image_tag("deploy_error.png")
@@ -30,7 +30,7 @@
           = image_tag("waiting.png")
 
 
-      %td#report-list{:width => "75%"}
+      %td#report-list
         = render :partial => "report_table"
       
 

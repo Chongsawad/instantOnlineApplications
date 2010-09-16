@@ -8,14 +8,18 @@
   .box{:style=>"text-align:center;"}
     = link_to image_tag(@project.img_path, :size => "150x160"), @project
   
-  %p
-    Version
-    %span
-    =h @project.version
-  %p
-    Demo<br>
-    = link_to @project.url_demo,@project.url_demo;
-    <br><br>Official site
+  #tab-content
+    = "Version : "
+    = @project.version
+    %br
+    %br
+    = "Demo visit"
+    %br
+    = link_to @project.url_demo, @project.url_demo;
+    %br
+    %br
+    = "Official site"
+    %br
     = link_to @project.url_project,@project.url_project;
 
 
