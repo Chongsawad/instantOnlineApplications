@@ -14,6 +14,7 @@ ActionController::Routing::Routes.draw do |map|
   
   map.connet 'sites/:id/download/log', :controller => "sites", :action => 'get_log'
   # The priority is based upon order of creation: first created -> highest priority.
+  #
 
   # Sample of regular route:
   #   map.connect 'products/:id', :controller => 'catalog', :action => 'view'
