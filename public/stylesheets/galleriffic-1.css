@@ -1,8 +1,8 @@
 div.gallery_wrapper {
 	/* The display of gallery_wrapper is enabled using jQuery so that the slideshow gallery_wrapper won't display unless javascript is enabled. */
 	display: none;
-	float: right;
-	width: 580px;
+	float: left;
+	width: 400px;
 }
 div.gallery_wrapper a, div.navigation a {
 	text-decoration: none;
@@ -11,9 +11,7 @@ div.gallery_wrapper a, div.navigation a {
 div.gallery_wrapper a:focus, div.gallery_wrapper a:hover, div.gallery_wrapper a:active {
 	text-decoration: underline;
 }
-div.controls {
-  float: right;
-}
+div.controls {margin-bottom: 10px;}
 div.controls a {
 	padding: 5px;
 }
@@ -21,12 +19,12 @@ div.ss-controls {
 	float: left;
 }
 div.nav-controls {
-	float: right;
+	text-align: center;
 }
 div.slideshow-container {
 	position: relative;
 	clear: both;
-	height: 380px; /* This should be set to be at least the height of the largest image in the slideshow */
+	height: 315px; /* This should be set to be at least the height of the largest image in the slideshow */
 }
 div.loader {
 	position: absolute;
@@ -35,8 +33,8 @@ div.loader {
 	background-image: url('loader.gif');
 	background-repeat: no-repeat;
 	background-position: center;
-	width: 580px;
-	height: 380px; /* This should be set to be at least the height of the largest image in the slideshow */
+	width: 400px;
+	height: 315px; /* This should be set to be at least the height of the largest image in the slideshow */
 }
 div.slideshow {
 
@@ -49,7 +47,7 @@ div.slideshow span.image-wrapper {
 }
 div.slideshow a.advance-link {
 	display: block;
-	width: 580px;
+	width: 400px;
 	/* height: 502px; This should be set to be at least the height of the largest image in the slideshow */
 	/* line-height: 502px;  This should be set to be at least the height of the largest image in the slideshow */
 	text-align: center;

@@ -20,7 +20,7 @@ $(function(){
 });
 $(function(){
   $('div.navigation').css({
-    'width' : '300px',
+    'width' : '400px',
     'float' : 'left'
   });
   $('div.gallery_wrapper').css('display', 'block');
@@ -31,6 +31,12 @@ $(function(){
     controlsContainerSel:   '#controls'
   });
 });
+
+$(function() {
+	$('a.advance-link').lightBox(); // Select all links in object with gallery ID
+});
+
+
 //$(function() {
 //  $("#navigation").accordion({
 //    active: false,

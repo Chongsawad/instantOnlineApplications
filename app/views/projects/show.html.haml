@@ -2,11 +2,12 @@
   .grid_12
     .project-gallery
       #gallery.gallery_wrapper
-        -##controls.controls
+        
         .slideshow-container
           #loading.loader
+          
           #slideshow.slideshow
-
+        #controls.controls 
       #thumbs.navigation
         %ul{ :class => "thumbs noscript" }
           %li
@@ -57,8 +58,9 @@
             %td
               = link_to @project.url_project;
   .clearfix
+  
   .grid_12
-    %div{:style => "float:left"}
+    .left
       = link_to 'Back', projects_path
-    %div{:style => "float:right"}
+    .right
       = link_to image_tag("button_install.png"), new_project_site_path(@project)

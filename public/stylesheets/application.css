@@ -279,12 +279,12 @@ p, table, table tr, table tr td{
 	display:block;
     float:right;
     position:relative;
-    width:435px;
+    width:500px;
 }
 .project-gallery{
   border: 1px solid;
   float: left;
-  width: 450px;
+  width: 400px;
 }
 
 #validate_name{ 
