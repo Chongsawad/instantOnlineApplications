@@ -33,7 +33,8 @@
             %span.tick
               = link_to @site.status.to_s().capitalize,:controller => "sites", :action => "deploy"
           .error#site-shoutbox
-            = link_to "Please contact staff.",:controller => "sites", :action => "deploy"
+            = link_to "Please reinstall the application", :controller => "sites", :action => "re_deploy"
+            = link_to " or contact staff.",:controller => "sites", :action => "deploy"
         
         - when "Deploying Process" 
           = image_tag("waiting.png")
@@ -42,6 +43,14 @@
               = link_to @site.status.to_s().capitalize,:controller => "sites", :action => "deploy"
           .notice#site-shoutbox
             = link_to "The site is currently building. Please wait for 5-10 minutes",:controller => "sites", :action => "deploy"
+        
+        - when "Re-deploying!"
+          = image_tag("wait.png")
+          %h5
+            %span.tick
+              = @site.status.to_s().capitalize
+          .notice#site-shoutbox
+            = link_to "The site is currently building. Please wait for 5-10 minutes"
           
         - else
           = image_tag("waiting.png")
