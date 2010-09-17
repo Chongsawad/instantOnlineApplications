@@ -39,6 +39,8 @@ p, table, table tr, table tr td{
 .content { height: auto !important; }
 .footer {  background:url("../images/bg-footer-tile.gif") repeat-x scroll 0 0 #D0D9E0;
            height: 180px;  color:#576672;  margin-top: 20px;  padding-top: 20px;}
+#footer-left{float: left; text-align:left;}
+#footer-right{float: right; text-align:right;}
 #guide { text-align: center; margin: 10px 0 0; }
 #guide table { border-collapse: collapse; vertical-align:center;}
 #logo {  float:left;  margin-top:20px; }

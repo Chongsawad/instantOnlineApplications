@@ -16,6 +16,9 @@
           %h5
             %span.tick
               =h @site.status.to_s().capitalize
+          .success#site-shoutbox
+            Online since…
+          
         - when "Promt for Install"
           = link_to image_tag("promt_install.png"),:controller => "sites", :action => "deploy"
           %h5
@@ -26,6 +29,7 @@
             
         - when "Deploying process Incomplete!"
           = image_tag("deploy_error.png")
+          
         - else
           = image_tag("waiting.png")
 
@@ -33,7 +37,6 @@
       %td#report-list
         = render :partial => "report_table"
       
-
 .clearfix
 
 #toolbar
