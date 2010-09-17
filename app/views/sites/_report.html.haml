@@ -29,10 +29,22 @@
             
         - when "Deploying process Incomplete!"
           = image_tag("deploy_error.png")
+          %h5
+            %span.tick
+              = link_to @site.status.to_s().capitalize,:controller => "sites", :action => "deploy"
+          .error#site-shoutbox
+            = link_to "Please contact staff.",:controller => "sites", :action => "deploy"
+        
+        - when "Deploying Process" 
+          = image_tag("waiting.png")
+          %h5
+            %span.tick
+              = link_to @site.status.to_s().capitalize,:controller => "sites", :action => "deploy"
+          .notice#site-shoutbox
+            = link_to "The site is currently building. Please wait for 5-10 minutes",:controller => "sites", :action => "deploy"
           
         - else
           = image_tag("waiting.png")
-
 
       %td#report-list
         = render :partial => "report_table"
@@ -40,7 +52,6 @@
 .clearfix
 
 #toolbar
-
   %h3
     TOOLS
 
