@@ -152,7 +152,9 @@ class SitesController < ApplicationController
     
     if @site.save
       render :layout => "action", :template => "sites/uninstall"
+
       @site.uninstall(@site)
+
     else
       redirect_to(@site, :warning => "Uninstall site incomplete!. Please contact administrator.")
     end
@@ -163,7 +165,7 @@ class SitesController < ApplicationController
   def destroy
     @site = Site.find(params[:id])
     
-    if @site.uninstall(@site)
+    if @site.uninstall(@site) == true 
       puts "\n\n\n----------- DESTROYED -----------\n\n\n"
       puts "SITE = #{@site.name}"
       
