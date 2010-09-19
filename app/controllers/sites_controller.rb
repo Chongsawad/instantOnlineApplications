@@ -53,7 +53,6 @@ class SitesController < ApplicationController
     # site_path is the destination path which store all of resource of this site
     # site_path should be the same as the path in capistrano file(cap file)
     # @site.path = "/home/inice/InstantSOA/deploy_cap/inice/#{current_user.id}_#{params[:site][:name]}"
-    
     @site.path = "/home/inice/users/#{current_user.id}/#{current_user.id}_#{params[:site][:name]}"
     @site.status = "Promt for Install"
     @site.user = current_user
@@ -65,7 +64,6 @@ class SitesController < ApplicationController
       else
         if @site.validate_site_name(@site.name) 
           if @site.save
-            #Delayed::Job.enqueue(DeployingJob.new(current_user, @project, @site))
 
             format.html { redirect_to @site }
             format.xml  { render :xml => @site, :status => :created, :location => @site }
@@ -93,7 +91,7 @@ class SitesController < ApplicationController
       
       render :layout => "action", :template => "/sites/deploy"
       
-      @site.deploy_on_background(current_user,@project,@site)
+      @site.deploy_on_background(@site)
       
     else
       render :action => "index"
@@ -108,7 +106,7 @@ class SitesController < ApplicationController
       @site.status = "Re-deploying!"
       if @site.save
        render :layout => "action", :template => "/sites/re_deploy"
-        @site.deploy_on_background(current_user,@site.project,@site)
+       @site.deploy_on_background(@site)
       else 
         redirect_to(@site, :notice => "ERROR FILE PATH. Please contact administrator.")
       end
@@ -137,9 +135,9 @@ class SitesController < ApplicationController
   # CLEAN /sites/:id/clean
   def clean_database
     @site = Site.find(params[:id])
+    render :layout => "action", :template => "/sites/clean_database"
     @site.status = "Cleaning database"
     if @site.save
-      render :layout => "action", :template => "/sites/clean_database"
       @site.clean_database(@site)
     else
       redirect_to(@site, :notice => "Database Error. Please contact administrator.")
@@ -152,8 +150,7 @@ class SitesController < ApplicationController
     
     if @site.save
       render :layout => "action", :template => "sites/uninstall"
-
-      @site.uninstall(@site)
+      @site.uninstalling_on_fire(@site)
 
     else
       redirect_to(@site, :warning => "Uninstall site incomplete!. Please contact administrator.")

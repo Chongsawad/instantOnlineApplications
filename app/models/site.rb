@@ -17,14 +17,22 @@ class Site < ActiveRecord::Base
   
   # Enqueue job to delayed job 
   # delayed job automated manage queue and install application by itselves
-  def deploy_on_background(user, project, site)
+  def deploy_on_background(site)
 
     puts "\n\n\n\n\n\n Deploying!…Enqueue to Delayed_job \n\n\n\n\n\n"
 
-    Delayed::Job.enqueue(DeployingJob.new(user, project, site))
+    Delayed::Job.enqueue(DeployingJob.new(site))
 
   end
   
+  def uninstalling_on_fire(site)
+
+    puts "\n\n\n\n\n\n Uninstalling!…Enqueue to Delayed_job \n\n\n\n\n\n"
+
+    Delayed::Job.enqueue(UninstallingJob.new(site))
+
+  end
+
   # Find all tables in its application database
   def clean_database(site)
     site.status = "Cleaning database"
@@ -62,8 +70,21 @@ class Site < ActiveRecord::Base
     end
   end
   
-  def remove_subdomain_conf
-    
+  def remove_subdomain_conf(site)
+
+    if system("sh -c 'test -e #{RAILS_ROOT}/site_info/#{site.user.id}_#{site.name}.*'")
+
+      puts "\n----------- Delete #{RAILS_ROOT}/site_info/#{site.user.id}_#{site.name} -----------\n"
+
+      system("sh -c 'rm -Rf #{RAILS_ROOT}/site_info/#{site.user.id}_#{site.name}.*'")
+
+      return true
+
+    else
+      puts "\n----------- Cannot delete sub-domain the confinguration file --> #{RAILS_ROOT}/site_info/#{site.user.id}_#{site.name} -----------\n"
+
+      return false
+    end
   end
 
   def remove_site_files
@@ -94,6 +115,7 @@ class Site < ActiveRecord::Base
 
         # Delete web-server configuration file 
         # stored in deploying tools project [Instant Online Application]
+        #remove_subdomain_conf(site) 
         if system("sh -c 'test -e #{RAILS_ROOT}/site_info/#{site.user.id}_#{site.name}.*'")
 
           system("sh -c 'rm -Rf #{RAILS_ROOT}/site_info/#{site.user.id}_#{site.name}.*'")
