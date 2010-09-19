@@ -137,10 +137,10 @@ class SitesController < ApplicationController
   # CLEAN /sites/:id/clean
   def clean_database
     @site = Site.find(params[:id])
-    @site.clean_database(@site)
     @site.status = "Cleaning database"
     if @site.save
       render :layout => "action", :template => "/sites/clean_database"
+      @site.clean_database(@site)
     else
       redirect_to(@site, :notice => "Database Error. Please contact administrator.")
     end
@@ -168,6 +168,8 @@ class SitesController < ApplicationController
     if @site.uninstall(@site) == true 
       puts "\n\n\n----------- DESTROYED -----------\n\n\n"
       puts "SITE = #{@site.name}"
+      @site.destroy
+      @site.save
       
       respond_to do |format|
         format.html { redirect_to(sites_url, :notice => "Your site was successfully deleted.") }
