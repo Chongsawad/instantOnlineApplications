@@ -47,17 +47,8 @@ class Site < ActiveRecord::Base
   # Find all tables in its application database
   def clean_database(site)
     site.status = "Cleaning database"
-    
-    @app_name = site.user.id.to_s()+'_'+site.name
 
-    if system("sh -c 'cd #{site.path}/current/; cap APPNAME='#{site.user.id}_#{site.name}' USER=#{site.user.id} AUTO_ACCEPT='true' OVERWRITE='true' database:remigrate;'")
-      site.status = "Online"
-      site.save
-
-    else 
-      site.status = "Cannot clean database"
-      site.save
-    end
+    Delayed::Job.enqueue(CleaningJob.new(site))
   end
   
 
