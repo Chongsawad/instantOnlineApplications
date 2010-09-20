@@ -30,7 +30,7 @@ class UninstallingJob < Struct.new(:site)
         if system("sh -c 'test -e #{RAILS_ROOT}/site_info/#{site.user.id}_#{site.name}.*'")
 
           system("sh -c 'rm -Rf #{RAILS_ROOT}/site_info/#{site.user.id}_#{site.name}.*'")
-          site.status = "Site was successfully Uninstalled"
+          site.status = "Promt for Install"
           site.save
           puts "\n----------- Delete #{RAILS_ROOT}/site_info/#{site.user.id}_#{site.name} -----------\n"
 
