@@ -9,13 +9,19 @@
       %td
         %a{:href=>"#{re_deploy_path(@site)}"}
           %span{:width => "32"}
-            = image_tag "reinstall.png", :size => "32x32"
+            = image_tag "redeploy.png", :size => "32x32"
           Reinstall
       %td
         %a{:href=>"#{clean_path(@site)}"}
           %span{:width => "32"}
             = image_tag "clean.png", :size => "32x32"
           Clean Database
+      %td
+        %a{:href=>"#{reload_path(@site)}"}
+          %span{:width => "32"}
+            = image_tag "reload.png", :size => "32x32"
+          Reload site
+              
       %td
         %a{:href=>"#{uninstall_path(@site)}"}
           %span{:width => "32"}
