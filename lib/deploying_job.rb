@@ -46,8 +46,8 @@ EOF
     if system("sh -c 'cd #{@app_path}/; cap deploy USER=#{@userId} APPNAME=#{@app_name};'")
 
     # Reload nginx after deploying has done
-      #puts "Reload nginx"
-      #system("sh -c 'sudo /etc/init.d/nginx reload'")
+      puts "Reload nginx"
+      system("sh -c 'sudo /etc/init.d/nginx reload'")
 
       puts "\n\n*** Email to User *** \n\n "
       JobMailer.deliver_mail_finished

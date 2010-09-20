@@ -15,6 +15,17 @@ class Site < ActiveRecord::Base
     end
   end
   
+  def reload_service
+    puts "Reload Nginx"
+    if `sudo /etc/init.d/nginx reload`
+      puts "Reload Nginx Successful"
+      return true
+    else
+      puts "Cannot reload Nginx"
+      return false
+    end
+  end
+
   # Enqueue job to delayed job 
   # delayed job automated manage queue and install application by itselves
   def deploy_on_background(site)

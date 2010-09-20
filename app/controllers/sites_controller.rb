@@ -176,6 +176,16 @@ class SitesController < ApplicationController
       redirect_to(@site, :warning => "Remove site incomplete!. Please contact administrator.")
     end
   end
+
+  def reload
+    @site = Site.find(params[:id])
+    @site.status = "Reload Server"
+    if @site.reload_service
+      @site.status = "Online"
+      @site.save
+      redirect_to(@site, :notice => "Site was successfully reload.")
+    end
+  end
   
   def get_log
     @site = Site.find(params[:id])

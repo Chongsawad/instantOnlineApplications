@@ -7,6 +7,7 @@ ActionController::Routing::Routes.draw do |map|
   map.re_deploy 'sites/:id/re_deploy', :controller => "sites", :action => 're_deploy'
   map.clean 'sites/:id/clean',:controller => "sites", :action => 'clean_database'
   map.uninstall 'sites/:id/uninstall',:controller => "sites", :action => 'uninstall'
+  map.reload 'sites/:id/reload',:controller => "sites", :action => 'reload'
   
   map.manage 'manage', :controller => "sites", :action => 'index'
   map.support 'support', :controller => 'pages', :action => 'support'
