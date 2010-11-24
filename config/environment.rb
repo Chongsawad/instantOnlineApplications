@@ -56,8 +56,8 @@ Rails::Initializer.run do |config|
     :port           => 587,
     :domain         => 'localhost',
     :authentication => :plain,
-    :user_name      => 'chongsawad252@gmail.com',
-    :password       => 'kckctv9t2925'
+    :user_name      => 'coe.project.coop@gmail.com',
+    :password       => '1z2x3c4v5b'
   }
 
 #  config.action_mailer.smtp_settings = {
@@ -65,8 +65,8 @@ Rails::Initializer.run do |config|
 #    :port 		=> 587,
 #    :domain 		=> "localhost",
 #    :authentication 	=> :plain,
-#    :user_name 		=> "chongsawad252@gmail.com",
-#    :password 		=> "kckctv9t2925"
+#    :user_name 	=> "coe.project.coop@gmail.com",
+#    :password       => '1z2x3c4v5b'
 #  }
 
 end
