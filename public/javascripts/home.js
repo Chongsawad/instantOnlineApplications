@@ -4,3 +4,8 @@ jQuery().ready(function(){
   // simple accordion
   jQuery('#accordion').accordion();
 });
+
+
+$().ready(function() {
+	$('#coda-slider-1').codaSlider();
+});

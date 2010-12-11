@@ -32,16 +32,9 @@ $(function(){
   });
 });
 
+
 $(function() {
 	$('a.advance-link').lightBox(); // Select all links in object with gallery ID
 });
 
 
-//$(function() {
-//  $("#navigation").accordion({
-//    active: false,
-//    navigation: true,
-//    header: '.head',
-//    event: 'mouseover'
-//  });
-//});
