@@ -4,8 +4,14 @@
   Online Store
 
 .grid_12
-  %h4
+  %h3.left
     Choose an application.
+  %h3.right
+    %span
+      - form_tag projects_path, :method => "get" do
+        = text_field_tag :search, params[:search]
+        = submit_tag "Search", :name => nil
+      
 .products
   - @projects.each do |project|
     .grid_3
