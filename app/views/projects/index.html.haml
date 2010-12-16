@@ -9,21 +9,28 @@
 
 - counter = 0
 .products
+  - if @projects.total_entries == 0
+    .grid_3 
+      = render :partial => "search"
+      %p
+        Cannot found, Please try agin.
+      
   - @projects.each do |project|
     .grid_3
       .product
         = render :partial => "project", :object => project
+        
     - counter = counter+1
+    
+    - if counter == @projects.total_entries and counter < 3
+
+      .grid_3 
+        = render :partial => "search"
+    
     - if counter == 3
       .grid_3 
-        .search_form
-          %h5.search
-            Find Applications
-          %span
-            - form_tag projects_path, :method => "get" do
-              = text_field_tag :search, params[:search]
-              = submit_tag "Search", :name => nil
-        .clearfix
+        = render :partial => "search"
+        
     - if counter%3 == 0
       .grid_3
         %p

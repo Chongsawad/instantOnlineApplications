@@ -1,0 +1,7 @@
+.search_form
+  %h5.search
+    Find Applications
+  %span
+    - form_tag projects_path, :method => "get" do
+      = text_field_tag :search, params[:search]
+      = submit_tag "Search", :name => nil
