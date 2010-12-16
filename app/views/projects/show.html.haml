@@ -19,14 +19,14 @@
         #thumbs.navigation
           %ul{ :class => "thumbs noscript" }
             %li
-              %a.thumb{:href => @project.img_path, :title => "Title1"}
-                =image_tag(@project.img_path,:height => "84", :width => "84")
+              %a.thumb{:href => @project.screenshot.url, :title => "Title1"}
+                =image_tag(@project.screenshot_file_name,:height => "84", :width => "84")
             %li
-              %a.thumb{:href => @project.img_path, :title => "Title1"}
-                =image_tag(@project.img_path,:height => "84", :width => "84")
+              %a.thumb{:href => @project.screenshot.url, :title => "Title1"}
+                =image_tag(@project.screenshot_file_name,:height => "84", :width => "84")
             %li
-              %a.thumb{:href => @project.img_path, :title => "Title1"}
-                =image_tag(@project.img_path,:height => "84", :width => "84")
+              %a.thumb{:href => @project.screenshot.url, :title => "Title1"}
+                =image_tag(@project.screenshot_file_name,:height => "84", :width => "84")
 
 
       .project-detail

@@ -6,7 +6,7 @@
   %h4
     =link_to @project.name, @project
   .box{:style=>"text-align:center;"}
-    = link_to image_tag(@project.img_path, :size => "150x160"), @project
+    = link_to image_tag(@project.screenshot_file_name, :size => "150x160"), @project
   
   #tab-content
     = "Version : "

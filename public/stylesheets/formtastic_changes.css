@@ -12,5 +12,13 @@ The following style may be *conditionally* included for improved support on olde
 form.formtastic fieldset ol li fieldset legend { margin-left: -6px;}
 
 --------------------------------------------------------------------------------------------------*/
-form.formtastic fieldset > ol > li { display: block; margin-bottom: 1.0em; }
+form.formtastic fieldset > ol > li { display: block; margin-bottom: 2.0em; }
 form.formtastic fieldset { display: block }
+
+/* TEXTAREA OVERRIDES 13em --> 74% By InICe : Dec 16,2010 */
+form.formtastic fieldset > ol > li.password input { max-width: 74%; }
+
+/* TEXTAREA OVERRIDES 74 --> 50 By InICe : Dec 16,2010 
+--------------------------------------------------------------------------------------------------
+form.formtastic fieldset > ol > li.text textarea { width:63%; }
+*/

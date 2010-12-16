@@ -1,7 +1,25 @@
 .container_12
+  .grid_3
+    .space
+      %p
+    
+  .grid_6
+    %h3
+      New Project
+    %h4
+      To create an application
+    %p
+      In order to public an application, You should have to submit an application to us for verification process. Then, you will get an application ticket (also the path to your application)
+      been verified by Administrator.
+    %p{:style => "text-indent:15px;"}
+      = link_to 'Verify an application', support_path
+    %p{:style => "text-indent:15px;"}
+      = link_to 'Check verification ticket', support_path
+    %br
 
-  %h1
-    Add Project
-  .grid_12
-    = render :partial => "form"
-    = link_to 'Back', projects_path
+    %h4
+      Project Information
+    .box
+      = render :partial => "form"
+    .right
+      = link_to 'Back', projects_path

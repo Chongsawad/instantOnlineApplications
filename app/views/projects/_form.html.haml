@@ -4,18 +4,18 @@
 
     = f.input :name
     
-    = f.input :version
+    = f.input :version, :hint => 'should be a stable version of your project'
 
-    = f.input :content
+    = f.input :content, :name => 'Description',:input_html => {:rows => 7}, :hint => 'Fully describe about the Project'
+    
+    = f.input :detail, :name => 'Info', :hint => 'Briefly describe about the Project'
 
-    = f.input :screenshot, :as => :file
+    = f.input :screenshot, :name => 'Thumbnail', :as => :file, :hint => 'Should be JPEG or PNG , size small (about 210x230 pixels).', :input_html => {:size => 26}
 
-    = f.input :path
+    = f.input :path, :hint => 'A Path to the Project'
+    
+    = f.input :url_project, :hint => 'Specify the Homepage/Company path to this Project/Application'
 
-    = f.input :detail
-
-    = f.input :url_project
-
-    = f.input :url_demo
+    = f.input :url_demo, :hint => 'Specify the "Demo path" to this Project/Application'
 
   = f.buttons

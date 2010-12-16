@@ -1,8 +1,9 @@
 .grid_3
   %br
-.grid_4
-  %h2
+.grid_5
+  %h3
     Sign in
+  %br
   - semantic_form_for resource_name, resource, :url => session_path(resource_name) do |form|
     - form.inputs do
       = form.input :email

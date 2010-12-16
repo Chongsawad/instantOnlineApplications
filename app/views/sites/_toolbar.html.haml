@@ -24,6 +24,13 @@
 .right
   %table#toolbar-table
     %tr
+      - if current_user.username == 'admin'
+        %td
+          %a{:href=>"#{new_project_path}"}
+            %span{:width => "32"}
+              = image_tag "add_project.png", :size => "32x32"
+            New Application
+      
       %td
         %a{:href=>"#{projects_path}"}
           %span{:width => "32"}
@@ -33,6 +40,6 @@
         %a{:href=>"#{edit_user_registration_path}"}
           %span{:width => "32"}
             = image_tag "edit_profile.png", :size => "32x32"
-          Admin profile
+          User Profile
       
 .clearfix

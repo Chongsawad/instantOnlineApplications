@@ -2,8 +2,7 @@ class ProjectsController < ApplicationController
   # GET /projects
   # GET /projects.xml
   def index
-    @projects = Project.search(params[:search])
-
+    @projects = Project.search(params[:search],params[:page])
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @projects }

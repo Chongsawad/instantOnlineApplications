@@ -15,13 +15,16 @@ h1  {  font-size:18px; letter-spacing:-1px;  margin: 0 0 2px; float:left;  line-
             text-shadow:0 -1px 0 #000000;}
 h2 {font-size:24px; margin: 0 0 25px;  }
 h2.small { font-size:22px; margin-bottom: 15px; }
-h3 {font-size:16px; margin:20px 0 20px; font-weight:bold;}
+h3 {font-size:24px; margin:20px 0 20px; font-weight:bold;}
 h4 {font-size:14px; margin:0 0 10px; font-weight:bold;}
-h5 {margin: 10px 0 5px; color: #9197A6;}
+
+h5, h5.search {margin: 10px 0 5px;}
+h5 { color: #9197A6; }
+h5.search { color: #000; float:right;}
 
 p {line-height:18px; margin:0 0 15px 0; color:#43464C; }
 p.navigator { color: #0373bc; font-size: 14px; }
-a {color: #000; text-decoration:none; font-weight:normal; }
+a {color: #000; text-decoration: none; font-weight:normal;}
 p, table, table tr, table tr td{
   font-family:"Lucida Sans Unicode","Lucida Grande",Sans-Serif;
   border-collapse:collapse; font-size:12px;  text-align:left;
@@ -270,6 +273,8 @@ p, table, table tr, table tr td{
 
 .left{float: left;}
 .right{float:right;}
+
+.center{ margin-left:auto; margin-right:auto; width:200px;}
 
 .box {
 	background:none repeat scroll 0 0 #F9F9F9;

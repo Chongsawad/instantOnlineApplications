@@ -6,16 +6,32 @@
 .grid_12
   %h3.left
     Choose an application.
-  %h3.right
-    %span
-      - form_tag projects_path, :method => "get" do
-        = text_field_tag :search, params[:search]
-        = submit_tag "Search", :name => nil
-      
+
+- counter = 0
 .products
   - @projects.each do |project|
     .grid_3
       .product
         = render :partial => "project", :object => project
+    - counter = counter+1
+    - if counter == 3
+      .grid_3 
+        .search_form
+          %h5.search
+            Find Applications
+          %span
+            - form_tag projects_path, :method => "get" do
+              = text_field_tag :search, params[:search]
+              = submit_tag "Search", :name => nil
+        .clearfix
+    - if counter%3 == 0
+      .grid_3
+        %p
+      .clearfix
+  
+.clearfix
 
+.grid_9
+  .center
+    = will_paginate @projects
 
