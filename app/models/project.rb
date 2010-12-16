@@ -6,6 +6,6 @@ class Project < ActiveRecord::Base
   
   def self.search(search,page)
     paginate :per_page => 6, :page => page, 
-             :conditions => ['name LIKE ?', "%#{search}%"], :order => 'name'
+             :conditions => ['name LIKE ?', "%#{search}%"], :order => 'id'
   end
 end
