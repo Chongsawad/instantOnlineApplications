@@ -1,13 +1,6 @@
 - content_for :header do
   Site Information
-.grid_12  
+  
+.subpage
   = render :partial => "edittoolbar"
-
-#report-form.grid_12
-  %ul
-    %li
-      %a{:href=>"#report"}
-        Site :
-        =@site.name
-  #report
-    = render :partial => "report"
+  = render :partial => "report"

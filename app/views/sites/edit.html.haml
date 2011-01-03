@@ -1,15 +1,10 @@
 - content_for :header do
   Site Information
-.grid_12  
-  = render :partial => "edittoolbar"
 
-#report-form.grid_12
-  %ul
-    %li
-      %a{:href=>"#report"}
-        Site :
-        =@site.name
-  #report.grid_8
+.subpage
+  = render :partial => "edittoolbar"
+  
+  #report
     - semantic_form_for(@site) do |form|
       = form.error_messages
       - form.inputs do
@@ -18,7 +13,7 @@
         #site-hint .project.com
         #validate_help{:style => "margin:10px 0 20px 25%;"}
           Site name must static name.
-        
+    
         = form.input :description, :as => :text, :label => "Site info", :input_html => { :size => "5x5" }, :hint => "Type about your website"
 
         = form.input :project_id, :as => :hidden

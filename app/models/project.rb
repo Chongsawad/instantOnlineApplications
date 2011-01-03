@@ -7,7 +7,7 @@ class Project < ActiveRecord::Base
   has_attached_file :screenshot, :styles => { :showcase => "272x296>" }
   
   def self.search(search,page)
-    paginate :per_page => 6, :page => page, 
+    paginate :per_page => 8, :page => page, 
              :conditions => ['name LIKE ?', "%#{search}%"], :order => 'id'
   end
 end

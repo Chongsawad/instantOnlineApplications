@@ -3,40 +3,26 @@
 
 .grid_12
   %h3.left
-    Choose an application.
+    Choose an application
+  .right
+    = render :partial => "search"
+  
 
 - counter = 0
 .products
   - if @projects.total_entries == 0
-    .grid_3 
-      = render :partial => "search"
-      %p
-        Cannot found, Please try agin.
-      
+    %p
+      Cannot found, Please try agin.
+    
   - @projects.each do |project|
     .grid_3
       .product
         = render :partial => "project", :object => project
-        
-    - counter = counter+1
-    
-    - if counter == @projects.total_entries and counter < 3
-
-      .grid_3 
-        = render :partial => "search"
-    
-    - if counter == 3
-      .grid_3 
-        = render :partial => "search"
-        
-    - if counter%3 == 0
-      .grid_3
-        %p
-      .clearfix
   
 .clearfix
 
-.grid_9
+.grid_12.fixSubpage
   .center
     = will_paginate @projects
+  %br
 

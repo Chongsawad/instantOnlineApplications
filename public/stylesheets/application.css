@@ -1,32 +1,16 @@
-body {  background:url("../images/bg_dark_glass_app.jpg") repeat-x top center;}	
+body { background: #e1e1e1;}	
 body{  font-family: "Myriad Pro","Lucida Grande","Lucida Sans Unicode",Helvetica,Arial,Verdana,sans-serif;
-       font-size:12px;  color:#434343;  margin:0;  -webkit-text-size-adjust: none; }
+       font-size:14px;  color:#434343;  margin:0;  -webkit-text-size-adjust: none; }
 
 
 h1, h2, h3, h4, h5, h6 {
   font-family:'Lucida Grande', 'Lucida Sans Unicode';
   font-weight:normal;color:#43464C;}
-h1  {  font-size:18px; letter-spacing:-1px;  margin: 0 0 2px;
-       line-height:normal;font-style: italic;}
-#header { height: 460px;}
-#top { height: 40px;}
-
-#middle{ height: 120px; background:url("../images/home_support.jpg") no-repeat;
-}
-/* Customize for banner for Home page. */
-#title {
-	background:url("../images/home_slide.jpg") no-repeat; 
-	height:220px;
-	padding: 80px 0 0 6px;}
-
-/* Text for H1 Home page */
-#title h1 { color:white;
-            font-size:16px;
-            font-style:normal;
-						font-weight: normal; 
-            text-shadow:0 -1px 0 #000000;}
-#title p{
-	color: white;
+h1  {  font-size:32px; 
+       line-height:normal;
+       font-style: normal;
+       color: white;
+       margin: 30 0 0;
 }
 
 h2 {font-size:24px;}
@@ -47,12 +31,44 @@ p, table, table tr, table tr td{
 }
 
 
+#top { height: 40px;}
+#title { height: 133px;}
+
+
+
 /*****************************************************************/
 
 #about-project tr td { width: 100px;}
 #app-header { no-repeat scroll center center transparent; margin-bottom:20px;}
 #application-list{  /*background:url("../images/banner.png") no-repeat scroll center center transparent;*/ height:150px;}
-.content { padding-top: 20px; }
+.wrapper {
+	background:url("../images/bg_dark_glass_app.jpg") repeat-x top center;
+}
+.header {
+	height: 200px;
+}
+
+.content {
+	display: block;
+	margin: 0 auto;
+	width: 960px;
+	padding: 0 30px;
+	-moz-box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
+	background: none repeat scroll 0 0 #FFFFFF;
+}
+.subpage {	
+	position: relative;
+	margin-top: -30px;
+	height: auto;
+	min-height:350px;
+	float:none !important;
+ }
+.fixSubpage {
+	float:none;
+	display:block;
+}
+
+
 .footer {  background:url("../images/bg-footer-tile.gif") repeat-x scroll 0 0 #D0D9E0;
            height: 180px;  color:#576672;  margin-top: 20px;  padding-top: 20px;}
 #footer-left{float: left; text-align:left;}
@@ -85,9 +101,6 @@ p, table, table tr, table tr td{
   letter-spacing:2px;
   margin:0 0 3px;
 }.product .frame .screenshot a:hover {  color:  #43464C;}
-.products {
-  margin: 20px 0 0;
-}
 .products .detail p {
   text-align: justify;
   margin: 0 10px 0;
@@ -102,7 +115,7 @@ p, table, table tr, table tr td{
 	height:500px;
 }
 #site-hint {
-	margin: -42px 0 15px 330px;
+	margin: -55px 0 15px 350px;
 	font-size: 18px;
 }
 #tabs-1, #tabs-2, #tabs-3{ min-height: 300px;}
@@ -172,6 +185,7 @@ p, table, table tr, table tr td{
 	margin: 10px 0px;
   border-spacing:1px;
   color:#666666;
+	height: 60px;
 }
 #toolbar-table tr td {  
   border-bottom:1px solid #FFFFFF;
@@ -253,7 +267,7 @@ p, table, table tr, table tr td{
 
 .beta { margin-left:4px;}
 .omega { margin-left:9px;}
-.wrapper {  margin:0 auto;  min-height: 100%; }
+
 
 
 /***************************************************/

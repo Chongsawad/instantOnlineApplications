@@ -43,20 +43,19 @@
               .error
                 = flash[:warning] 
 
-          .clearfix
-          
-          #toolbar.grid_12
-            = yield(:toolbar)
-          .grid_12
-            .box#deploy
-              = image_tag("waiting_clock.png",:size=>"128x128")
-              %div
-                = yield(:detailProcess) || "Wait for 5-10 minutes for your jobs"
+          .subpage
+            .grid_12#toolbar
+              = yield(:toolbar)
+            .grid_12
+              .box#deploy
+                = image_tag("waiting_clock.png",:size=>"128x128")
+                %div
+                  = yield(:detailProcess) || "Wait for 5-10 minutes for your jobs"
                 
-            #deploy  
-              = link_to "Site Management", sites_path
-              |
-              = link_to "Go to your site", "http://" + @site.name + ".project.com"
+              #deploy  
+                = link_to "Site Management", sites_path
+                |
+                = link_to "Go to your site", "http://" + @site.name + ".project.com"
  
     .clearfix
 

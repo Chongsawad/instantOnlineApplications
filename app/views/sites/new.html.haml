@@ -1,18 +1,17 @@
 - content_for :header do
   Create your Site
-#toolbar.grid_12
+
+.grid_12#toolbar
+  %h3
+    Form a site
   = render :partial => "newtoolbar"
 .clearfix 
 
-#site-tab.grid_4
+
+.grid_4#site-tab
   = render :partial => "tabs"
 
-#site-form.grid_8
-  %ul
-    %li
-      %a{:href=>"#form"}
-        Form
-  #form
-    = render :partial => "form"
-    
+.grid_8#form
+  = render :partial => "form"
+  
 .clearfix

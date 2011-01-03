@@ -1,12 +1,6 @@
 // Place your application-specific JavaScript functions and classes here
 // This file is automatically included by javascript_include_tag :defaults
 $(function(){
-  $('#site-tab').tabs();
-});
-$(function(){
-  $('#site-form').tabs();
-});
-$(function(){
   $('#report-form').tabs();
 });
 $(function(){
