@@ -4,45 +4,45 @@
     = stylesheet_link_tag 'reset'
     = stylesheet_link_tag 'text'
     = stylesheet_link_tag '960'
-    = stylesheet_link_tag 'application'
-    -#= stylesheet_link_tag 'demo2'
+    = stylesheet_link_tag 'home'
     = javascript_include_tag "jquery"
     = javascript_include_tag "jquery.dimensions"
     = javascript_include_tag "jquery.accordion"
     = javascript_include_tag "home"
             
   %body
-    .header
+    #header
       .container_12
-        .grid_12
+        .grid_12#top
           = render :partial => "shared/login"
           #nav
             = render :partial => "shared/nav"
-
-        -#.grid_6#logo
-        -#=link_to "<h1>Instant Online Application</h1>", projects_path
-        -#.grid_6#nav
-          
-
         .clearfix
-
         .grid_12#title
-          %h1
-            = yield :header
-
+          %p
+            Build a Web Application faster than ever
+          %p
+            CRM / ERP / Project Managent / Blog / Online Store
+          %p
+            Just One Click to install, Gets A Web Application
+          %p
+            Zero setting or Configuration
+        .clearfix
+        .grid_12#middle
+          .right
+            %br
+            = link_to(image_tag("../images/home_create_button.png"),projects_path)
     .content
       .container_12
         .grid_12
-          -if flash[:notice]
+          - if flash[:notice]
             .success
               = flash[:notice]
-
-          -if flash[:alert]
+          - if flash[:alert]
             .notice
               = flash[:alert]
-
         .clearfix
-
+        
         = yield
 
     .clearfix

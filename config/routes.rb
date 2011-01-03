@@ -1,6 +1,10 @@
 ActionController::Routing::Routes.draw do |map|
+  map.devise_for :users, :has_many => "sites"
+
   map.resources :sites
-  map.devise_for :users , :has_many => "sites"
+  map.resources :deployments
+  map.resources :config_parameters
+  map.resources :recipes
   map.resources :projects , :has_many => "sites"
   
   map.deploy 'sites/:id/deploy', :controller => "sites", :action => 'deploy'
@@ -14,6 +18,7 @@ ActionController::Routing::Routes.draw do |map|
   map.contact 'contact', :controller => 'pages', :action => 'contact'
   
   map.connet 'sites/:id/download/log', :controller => "sites", :action => 'get_log'
+  
   # The priority is based upon order of creation: first created -> highest priority.
   #
 
@@ -33,6 +38,7 @@ ActionController::Routing::Routes.draw do |map|
 
   # Sample resource route with sub-resources:
   #   map.resources :products, :has_many => [ :comments, :sales ], :has_one => :seller
+  
   
   # Sample resource route with more complex sub-resources
   #   map.resources :products do |products|

@@ -9,7 +9,15 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100910031938) do
+ActiveRecord::Schema.define(:version => 20101226154403) do
+
+  create_table "config_parameters", :force => true do |t|
+    t.string   "name"
+    t.string   "value"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "deployment_id"
+  end
 
   create_table "delayed_jobs", :force => true do |t|
     t.integer  "priority",   :default => 0
@@ -26,6 +34,13 @@ ActiveRecord::Schema.define(:version => 20100910031938) do
 
   add_index "delayed_jobs", ["priority", "run_at"], :name => "delayed_jobs_priority"
 
+  create_table "deployments", :force => true do |t|
+    t.string   "name",       :null => false
+    t.integer  "recipe_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "projects", :force => true do |t|
     t.string   "name"
     t.text     "content"
@@ -41,24 +56,33 @@ ActiveRecord::Schema.define(:version => 20100910031938) do
     t.integer  "screenshot_file_size"
     t.datetime "screenshot_updated_at"
     t.string   "version"
+    t.integer  "recipe_id"
+  end
+
+  create_table "recipes", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.text     "description"
   end
 
   create_table "sites", :force => true do |t|
-    t.string   "name",        :null => false
-    t.integer  "project_id",  :null => false
-    t.integer  "user_id",     :null => false
-    t.string   "path",        :null => false
+    t.string   "name",          :null => false
+    t.integer  "project_id",    :null => false
+    t.integer  "user_id",       :null => false
+    t.string   "path",          :null => false
     t.string   "payment"
     t.string   "status"
     t.string   "description"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "deployment_id"
   end
 
   create_table "users", :force => true do |t|
-    t.string   "email",                               :default => "", :null => false
-    t.string   "encrypted_password",   :limit => 128, :default => "", :null => false
-    t.string   "password_salt",                       :default => "", :null => false
+    t.string   "email",                               :default => "",    :null => false
+    t.string   "encrypted_password",   :limit => 128, :default => "",    :null => false
+    t.string   "password_salt",                       :default => "",    :null => false
     t.string   "confirmation_token"
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
@@ -76,6 +100,7 @@ ActiveRecord::Schema.define(:version => 20100910031938) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "username"
+    t.boolean  "admin",                               :default => false
   end
 
   add_index "users", ["confirmation_token"], :name => "index_users_on_confirmation_token", :unique => true

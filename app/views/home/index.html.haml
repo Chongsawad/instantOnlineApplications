@@ -1,39 +1,29 @@
-- content_for :header do
-  Instant Online Application
-
-.grid_6
-  #img{:style=>"text-align:center;"}
-    = link_to(image_tag('templates.png', :size=>"420x320"),projects_path)
+.grid_3
+  %h4
+    What is KhunpaOnline.com?
+  %p
+    KhunpaOnline.com is a software as a service which can automated build web application in less times with zero setting or configuration. 
+    %span Learn More ➤
     
-.grid_6
-  #accordion
-    %h3
-      %a
-        Free Install Opensource Online Application
-    %div
-      %p
-        Just one click to install, you can have your favourite open source applications up and running
+.grid_3
+  %h4
+    KhunpaOnline.com suites for
+  %p
+    Owner or Manager who wants to manage or plan his business with a great software
+    Teacher who wants to create their web application to encourage their school education. 
+    %span Learn More ➤
+.grid_3
+  %h4
+    Explore Provided Applications
+  %p
+    KhunpaOnline.com provided many applications such as RadiantCMS,Spree,Redmine. You can see it on Khunpa Store.
+    %span Learn More ➤
+  
+.grid_3
+  %h4
+    Submit your own application
+  %p
+    If you are web programmer and would like to promote your web application. Just sign up as developer. Then,submit your application to us. We'll keep it up on Khunpa Store.
+    %span Learn More ➤
+    -#'
 
-    %h3
-      %a
-        Zero setting/Configuration
-    %div
-      %p
-        Free Hosting and Domain for 30 days trial 
-
-    %h3
-      %a
-        Many Applications Now Available
-    %div
-      %p
-        CRM, ERP, Project Managent,Blog, Online Store    
-
-  .clearfix
-
-.grid_6
-  = link_to image_tag('trial.png'),new_user_registration_path
-  = link_to image_tag('learnmore.png')
-.clearfix
-
--#.grid_12
--#  %img{:src => "../images/info_guide.png"}

@@ -48,14 +48,13 @@ class SitesController < ApplicationController
   def create
     
     @site = Site.new(params[:site])
-    
-    @project = Project.find(@site.project_id)
+    @site.user = current_user
     # site_path is the destination path which store all of resource of this site
     # site_path should be the same as the path in capistrano file(cap file)
-    # @site.path = "/home/inice/InstantSOA/deploy_cap/inice/#{current_user.id}_#{params[:site][:name]}"
-    @site.path = "/home/inice/users/#{current_user.id}/#{current_user.id}_#{params[:site][:name]}"
+    @site.path = "/var/www/users/#{@site.user.id}/#{@site.user.id}_#{@site.name}"
     @site.status = "Promt for Install"
-    @site.user = current_user
+    
+    
     respond_to do |format|
       
       if Site.find_by_name(@site.name) != nil
@@ -64,7 +63,21 @@ class SitesController < ApplicationController
       else
         if @site.validate_site_name(@site.name) 
           if @site.save
-
+            
+            #New Deployment Ticket
+            @deploy = @site.build_deployment
+            @deploy.name = "Deployment"
+            
+            #Add a automated script
+            @deploy.recipe = @site.project.recipe
+            @deploy.save
+            
+            #Add parameters to Config Param Table
+            @site.deployment.configParameters.create(:name => "application", :value => @site.name)
+            @site.deployment.configParameters.create(:name => "user", :value => @site.user.username)
+            @site.deployment.configParameters.create(:name => "deploy_to", :value => "/var/www/users/#{@site.user.id}/#{@site.user.id}_#{@site.name}")
+            
+            @site.save
             format.html { redirect_to @site }
             format.xml  { render :xml => @site, :status => :created, :location => @site }
           else

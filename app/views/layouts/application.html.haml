@@ -15,29 +15,20 @@
     = javascript_include_tag "jquery-ui-1.8.2.custom.min"
     = javascript_include_tag "jquery.galleriffic"
 
-    -#= javascript_include_tag "jquery.lightbox-0.5"
-    
-    -#= stylesheet_link_tag 'ext-all'
-    -#= stylesheet_link_tag 'grid-examples'
-
-    -#= javascript_include_tag "ext-base"
-    -#= javascript_include_tag "ext-all"
-    -#= javascript_include_tag 'site_list'
-
     = javascript_include_tag "application"
 
   %body#application
     .wrapper
       .header
         .container_12
-          .grid_12
+          #top.grid_12
             = render :partial => "shared/login"
             #nav
               = render :partial => "shared/nav"
 
           .clearfix
 
-          .grid_12#title
+          .grid_12
             %h1
               = yield(:header) ||"Instant Online Application"
 

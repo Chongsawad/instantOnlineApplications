@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  has_many :proejcts, :through => "sites"
+  has_many :projects, :through => "sites"
   has_many :sites
 
   # Include default devise modules. Others available are:

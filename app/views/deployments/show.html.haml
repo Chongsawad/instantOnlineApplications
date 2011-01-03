@@ -1,0 +1,38 @@
+- content_for :header do
+  Deployment
+
+.grid_12
+  %h2
+    = 'ID:'
+    =h @deployment.id
+    =h @deployment.name.capitalize
+    %p
+      = link_to "Edit", edit_deployment_path
+  %h4
+    Deployment Site
+  %p
+    %span site :
+    =h @deployment.site.id
+    =h @deployment.site.name
+      
+  %h4
+    Configuration Parameters
+  - @deployment.configParameters.each do |config|
+    %p
+      =h config.name
+      %span =
+      =h config.value
+      %span
+        = link_to "Edit", edit_config_parameter_path(config)
+
+  %h4
+    Application Recipe
+  %p
+    =h @deployment.recipe.name.capitalize
+    %span
+      = link_to "Edit", edit_recipe_path(@deployment.recipe)
+  %p
+    =h @deployment.recipe.description
+
+  
+  
