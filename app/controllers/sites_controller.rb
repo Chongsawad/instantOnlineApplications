@@ -61,7 +61,7 @@ class SitesController < ApplicationController
           flash[:error] = 'Site name is exist.'
           format.html { redirect_to(@site) }
       else
-        if @site.validate_site_name(@site.name) 
+        if @site.validate_site_name(@site.name)
           if @site.save
             
             #New Deployment Ticket
@@ -111,7 +111,7 @@ class SitesController < ApplicationController
       
     end
   end
-    
+  
   def re_deploy
     @site = Site.find(params[:id])
 
@@ -129,7 +129,7 @@ class SitesController < ApplicationController
 
     end
   end
-
+  
   # PUT /sites/1
   # PUT /sites/1.xml
   def update
