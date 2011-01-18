@@ -8,4 +8,13 @@
   = render :partial => "actiontoolbar"
 
 - content_for :detailProcess do
-  It will take about 5 - 10 minutes. 
+  %br
+  %div
+    = image_tag "ajax-loader.gif"
+  %br
+  %div
+    This process will take about 5 - 10 minutes.
+    <br>You can check the result on Site Information Page.
+  %div
+    = button_to "Back to Site Information.", site_path(@site), :method => "get", :action => "index"
+

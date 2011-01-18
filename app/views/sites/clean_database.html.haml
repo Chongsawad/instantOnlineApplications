@@ -8,5 +8,12 @@
   = render :partial => "actiontoolbar"
   
 - content_for :detailProcess do
-  Your site will be disabled for 1 - 2 minutes.
+  %br
+  %div
+    = image_tag "ajax-loader.gif"
+  %br
+  %div
+    Your site will be disabled for 1 - 2 minutes.
+  %div
+    = button_to "Back to Site Information.", site_path(@site), :method => "get", :action => "index"
 
